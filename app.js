@@ -3,6 +3,7 @@ const app = Vue.createApp({
     return {
       counter: 0,
       name: '',
+      nickName: '',
     };
   },
 
@@ -16,6 +17,10 @@ const app = Vue.createApp({
     setName(event) {
       console.log({ event });
       this.name = event.target.value;
+    },
+
+    setNickName(event, suffix) {
+      this.nickName = event.target.value + ' ' + suffix;
     },
   },
 });

@@ -24,6 +24,8 @@
 
       <input type="text" v-on:input="setName" />
       <p>Your NAME : {{ name }}</p>
+      <input type="text" v-on:input="setNickName($event, 'THE HEROOO')" />
+      <p>Your NICKNAME : {{ nickName }}</p>
     </section>
   </body>
 </html>
