@@ -3,6 +3,7 @@ const app = Vue.createApp({
     return {
       counter: 0,
       name: '',
+      confirmedName: '',
       nickName: '',
     };
   },
@@ -20,6 +21,9 @@ const app = Vue.createApp({
     },
     setName(event) {
       this.name = event.target.value;
+    },
+    confirmedInput() {
+      this.confirmedName = this.name;
     },
 
     setNickName(event, suffix) {
