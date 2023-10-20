@@ -2,6 +2,7 @@ const app = Vue.createApp({
   data() {
     return {
       counter: 0,
+      name: '',
     };
   },
 
@@ -11,6 +12,10 @@ const app = Vue.createApp({
     },
     decrement(num) {
       this.counter -= num;
+    },
+    setName(event) {
+      console.log({ event });
+      this.name = event.target.value;
     },
   },
 });
