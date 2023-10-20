@@ -20,6 +20,7 @@
       <h2>Events in Action</h2>
       <button v-on:click="increment(10)">Add</button>
       <button v-on:click="decrement(5)">Remove</button>
+      <p v-once>Starting counter: {{ counter }}</p>
       <p>Result: {{ counter }}</p>
 
       <input
