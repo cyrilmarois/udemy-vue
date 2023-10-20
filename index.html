@@ -26,6 +26,11 @@
       <p>Your NAME : {{ name }}</p>
       <input type="text" v-on:input="setNickName($event, 'THE HEROOO')" />
       <p>Your NICKNAME : {{ nickName }}</p>
+
+      <form v-on:submit="submitForm">
+        <input type="text" />
+        <button class="submit">Sign up</button>
+      </form>
     </section>
   </body>
 </html>
