@@ -21,13 +21,19 @@
         class="demo"
         @click="boxSelected('A')"
         :style="{borderColor: boxASelected ? 'red': '#ccc'}"
+        :class="boxASelected ? 'demo active' : 'demo'"
       ></div>
       <div
         class="demo"
         @click="boxSelected('B')"
         v-bind:style="{borderColor: boxBSelected ? 'red' : '#ccc'}"
+        v-bind:class="{active: boxBSelected}"
       ></div>
-      <div class="demo" @click="boxSelected('C')"></div>
+      <div
+        class="demo"
+        @click="boxSelected('C')"
+        :class="{active: boxCSelected}"
+      ></div>
     </section>
   </body>
 </html>
