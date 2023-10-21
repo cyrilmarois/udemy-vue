@@ -24,10 +24,9 @@
         :class="boxASelected ? 'demo active' : 'demo'"
       ></div>
       <div
-        class="demo"
         @click="boxSelected('B')"
         v-bind:style="{borderColor: boxBSelected ? 'red' : '#ccc'}"
-        v-bind:class="{active: boxBSelected}"
+        v-bind:class="['demo', {active: boxBSelected}]"
       ></div>
       <div class="demo" @click="boxSelected('C')" :class="boxCClasses"></div>
     </section>
