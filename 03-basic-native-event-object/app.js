@@ -5,8 +5,25 @@ const app = Vue.createApp({
       name: (string = ''),
     };
   },
+  watch: {
+    counter(value) {
+      if (value > 50) {
+        this.counter = 0;
+      }
+    },
+  },
+  computed: {
+    fullname() {
+      console.log('Hello alone...');
+      if (this.name === '') {
+        return '';
+      }
+      return `${this.name} ZEROOO`;
+    },
+  },
   methods: {
     outputFullName() {
+      console.log('Hello there...');
       if (this.name === '') {
         return '';
       }
