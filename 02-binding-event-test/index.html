@@ -24,7 +24,11 @@
       <input type="text" v-on:keydown="setContent" />
       <p>{{ content }}</p>
       <hr />
-      <input type="text" v-on:keydown.enter="setFinalContent" />
+      <input
+        type="text"
+        v-on:keydown="setContent"
+        v-on:keyup.enter="setFinalContent"
+      />
       <p>{{ finalContent }}</p>
     </section>
   </body>

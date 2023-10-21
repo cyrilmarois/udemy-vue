@@ -1,8 +1,8 @@
 const app = Vue.createApp({
   data() {
     return {
-      content: '',
-      finalContent: '',
+      content: (string = ''),
+      finalContent: (string = ''),
     };
   },
 
