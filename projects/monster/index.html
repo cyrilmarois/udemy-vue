@@ -50,7 +50,23 @@
       <section id="log" class="container">
         <h2>Battle Log</h2>
         <ul v-for="log in logs" :key="log">
-          By: {{ log.from }} - Type: {{ log.type }} - Value: {{ log.value }}
+          <span
+            :class="{'log--player': log.origin === 'player', 'log--monster': log.origin === 'monster'}"
+          >
+            {{ log.origin === 'player' ? 'Player' : 'Monster' }}</span
+          >
+          <span v-if="log.type === 'heal'">
+            heals himself for
+            <span class="log--heal">{{ log.value }}</span></span
+          >
+          <span v-else-if="log.type === 'special attack'">
+            special attack and deals
+            <span class="log--damage"> {{ log.value }} </span></span
+          >
+          <span v-else>
+            attack and deals
+            <span class="log--damage"> {{ log.value }} </span></span
+          >
         </ul>
       </section>
     </div>

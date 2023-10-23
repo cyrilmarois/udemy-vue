@@ -106,9 +106,9 @@ const app = Vue.createApp({
       this.winner = 'monster';
     },
 
-    pushLogMessage(from, content, value) {
+    pushLogMessage(origin, content, value) {
       this.logs.unshift({
-        from: from,
+        origin: origin,
         type: content,
         value: value,
       });
