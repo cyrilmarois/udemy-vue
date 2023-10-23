@@ -19,20 +19,15 @@
     <section id="app">
       <ul>
         <contact-list></contact-list>
-        <li>
-          <h2>Manuel Lorenz</h2>
-          <button>Show Details</button>
-          <ul>
-            <li><strong>Phone:</strong> 01234 5678 991</li>
-            <li><strong>Email:</strong> manuel@localhost.com</li>
-          </ul>
-        </li>
-        <li>
-          <h2>Julie Jones</h2>
-          <button>Show Details</button>
-          <ul>
-            <li><strong>Phone:</strong> 09876 543 221</li>
-            <li><strong>Email:</strong> julie@localhost.com</li>
+        <contact-list></contact-list>
+        <li v-for="contact in contacts" :key="contact.id">
+          <h2>{{ contact.firstName }} {{ contact.lastName }}</h2>
+          <button @click="toggleContactDetails">
+            {{ `${toggleDetailLabel} Details` }}
+          </button>
+          <ul v-if="toggleContactInfo">
+            <li><strong>Phone:</strong> {{ contact.phone }}</li>
+            <li><strong>Email:</strong> {{ contact.email }}</li>
           </ul>
         </li>
       </ul>

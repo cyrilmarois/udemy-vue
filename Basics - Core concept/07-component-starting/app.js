@@ -1,13 +1,21 @@
 const app = Vue.createApp({
   data() {
     return {
+      toggleContactInfo: true,
       contacts: [
         {
-          id: null,
-          firstName: null,
-          lastName: null,
-          phone: null,
-          email: null,
+          id: 1,
+          firstName: 'Manuel',
+          lastName: 'Lorenz',
+          phone: '01234 5678 991',
+          email: 'manuel@localhost.com',
+        },
+        {
+          id: 2,
+          firstName: 'Julie',
+          lastName: 'Jones',
+          phone: '09876 543 221',
+          email: 'julie@localhost.com',
         },
       ],
       toggleContactLabel: null,
@@ -20,7 +28,11 @@ const app = Vue.createApp({
         : 'Hide');
     },
   },
-  methods: {},
+  methods: {
+    toggleContactDetails() {
+      this.toggleContactInfo = !this.toggleContactInfo;
+    },
+  },
 });
 app.component('contact-list', {
   template: `<li :key="contact.id">
