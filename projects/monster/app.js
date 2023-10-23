@@ -7,6 +7,7 @@ const app = Vue.createApp({
     return {
       playerHealth: 100,
       monsterHealth: 100,
+      counter: 0,
     };
   },
   computed: {
@@ -24,12 +25,18 @@ const app = Vue.createApp({
     playerHealthBarStyle() {
       return { width: this.playerHealth + '%' };
     },
+    unlockSpecialAttack() {
+      return this.counter % 3 !== 0;
+    },
   },
   methods: {
     attackMonster() {
       const damage = getRandomValue(5, 12); // hit between 5 and 12
       this.monsterHealth -= damage;
       this.attackPlayer();
+
+      // increment counter to unlock special attack
+      this.counter++;
     },
     attackPlayer() {
       const damage = getRandomValue(8, 15); // hit between 8 and 15
@@ -39,6 +46,9 @@ const app = Vue.createApp({
       const damage = getRandomValue(10, 25);
       this.monsterHealth -= damage;
       this.attackPlayer();
+
+      // increment counter to unlock special attack
+      this.counter++;
     },
   },
 });
