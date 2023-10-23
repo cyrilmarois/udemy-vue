@@ -51,7 +51,10 @@ const app = Vue.createApp({
       return { width: this.playerHealth + '%' };
     },
     unlockSpecialAttack() {
-      return this.counter % 3 !== 0;
+      return this.counter % 3 !== 0 || this.winner !== '';
+    },
+    lockButtons() {
+      return this.winner !== '';
     },
   },
   methods: {
@@ -89,6 +92,12 @@ const app = Vue.createApp({
 
       // increment counter to unlock special attack
       this.counter++;
+    },
+    resetGame() {
+      this.playerHealth = 100;
+      this.monsterHealth = 100;
+      this.counter = 0;
+      this.winner = '';
     },
   },
 });
