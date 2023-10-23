@@ -1,5 +1,5 @@
 <template>
-  <h2>CONTACTS</h2>
+  <h2><header>CONTACTS</header></h2>
   <contact-list></contact-list>
   <contact-list></contact-list>
 </template>
