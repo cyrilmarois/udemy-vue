@@ -45,7 +45,7 @@
           SPECIAL ATTACK
         </button>
         <button @click="healPlayer" :disabled="lockButtons">HEAL</button>
-        <button :disabled="lockButtons">SURRENDER</button>
+        <button @click="surrender" :disabled="lockButtons">SURRENDER</button>
       </section>
       <section id="log" class="container">
         <h2>Battle Log</h2>

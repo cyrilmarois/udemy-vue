@@ -99,6 +99,9 @@ const app = Vue.createApp({
       this.counter = 0;
       this.winner = '';
     },
+    surrender() {
+      this.winner = 'monster';
+    },
   },
 });
 
