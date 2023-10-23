@@ -50,6 +50,15 @@ const app = Vue.createApp({
       // increment counter to unlock special attack
       this.counter++;
     },
+
+    healPlayer() {
+      const healing = getRandomValue(8, 20);
+      if (this.playerHealth + healing > 100) {
+        this.playerHealth = 100;
+      } else {
+        this.playerHealth += healing;
+      }
+    },
   },
 });
 
