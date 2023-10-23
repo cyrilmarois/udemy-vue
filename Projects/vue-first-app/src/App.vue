@@ -1,8 +1,7 @@
 <template>
   <h2>CONTACTS</h2>
-  <ul v-for="contact in contacts" :key="contact.id">
-    <li>{{ contact.firstName }} {{ contact.lastName }}</li>
-  </ul>
+  <contact-list></contact-list>
+  <contact-list></contact-list>
 </template>
 
 <script>
