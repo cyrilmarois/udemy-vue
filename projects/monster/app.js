@@ -9,6 +9,7 @@ const app = Vue.createApp({
       playerHealth: 100,
       monsterHealth: 100,
       counter: 0,
+      logs: [],
     };
   },
   watch: {
@@ -65,12 +66,13 @@ const app = Vue.createApp({
 
       // increment counter to unlock special attack
       this.counter++;
-      //   this.getWinner();
+
+      this.pushLogMessage('player', 'attack', damage);
     },
     attackPlayer() {
       const damage = getRandomValue(8, 15); // hit between 8 and 15
       this.playerHealth -= damage;
-      //   this.getWinner();
+      this.pushLogMessage('monster', 'attack', damage);
     },
     specialAttack() {
       const damage = getRandomValue(10, 25);
@@ -79,9 +81,8 @@ const app = Vue.createApp({
 
       // increment counter to unlock special attack
       this.counter++;
-      //   this.getWinner();
+      this.pushLogMessage('player', 'special attack', damage);
     },
-
     healPlayer() {
       const healing = getRandomValue(8, 20);
       if (this.playerHealth + healing > 100) {
@@ -92,15 +93,25 @@ const app = Vue.createApp({
 
       // increment counter to unlock special attack
       this.counter++;
+      this.pushLogMessage('player', 'heal', healing);
     },
     resetGame() {
       this.playerHealth = 100;
       this.monsterHealth = 100;
       this.counter = 0;
       this.winner = '';
+      this.logs = [];
     },
     surrender() {
       this.winner = 'monster';
+    },
+
+    pushLogMessage(from, content, value) {
+      this.logs.unshift({
+        from: from,
+        type: content,
+        value: value,
+      });
     },
   },
 });
