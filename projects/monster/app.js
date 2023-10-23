@@ -13,6 +13,11 @@ const app = Vue.createApp({
     monsterHealthBarClass() {
       return { jarvis: true };
     },
+    hittedClass() {
+      return {
+        'health-rotated': true,
+      };
+    },
     monsterHealthBarStyle() {
       return { width: this.monsterHealth + '%' };
     },

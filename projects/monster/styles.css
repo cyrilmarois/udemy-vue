@@ -119,3 +119,15 @@ button:disabled {
 .log--heal {
   color: green;
 }
+
+.health-rotated {
+  animation: rotation 2s infinite linear;
+}
+@keyframes rotation {
+  50% {
+    transform: rotate(-1deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
