@@ -17,3 +17,14 @@ const app = Vue.createApp({
 });
 
 app.mount('#app');
+
+const app2 = Vue.createApp({
+  template: `<p>{{food}} time</p>`,
+  data() {
+    return {
+      food: 'Pizza',
+    };
+  },
+});
+
+app2.mount('#app2');
