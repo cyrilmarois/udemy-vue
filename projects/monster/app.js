@@ -58,6 +58,9 @@ const app = Vue.createApp({
       } else {
         this.playerHealth += healing;
       }
+
+      // increment counter to unlock special attack
+      this.counter++;
     },
   },
 });
