@@ -5,10 +5,29 @@ function getRandomValue(min, max) {
 const app = Vue.createApp({
   data() {
     return {
+      winner: '',
       playerHealth: 100,
       monsterHealth: 100,
       counter: 0,
     };
+  },
+  watch: {
+    playerHealth(value) {
+      if (value <= 0 && this.monsterHealth <= 0) {
+        // draw case
+        this.winner = 'draw';
+      } else if (value > 0 && this.monsterHealth <= 0) {
+        this.winner = 'player';
+      }
+    },
+    monsterHealth(value) {
+      if (value <= 0 && this.monsterHealth <= 0) {
+        // draw case
+        this.winner = 'draw';
+      } else if (value > 0 && this.playerHealth <= 0) {
+        this.winner = 'monster';
+      }
+    },
   },
   computed: {
     monsterHealthBarClass() {
@@ -37,10 +56,12 @@ const app = Vue.createApp({
 
       // increment counter to unlock special attack
       this.counter++;
+      //   this.getWinner();
     },
     attackPlayer() {
       const damage = getRandomValue(8, 15); // hit between 8 and 15
       this.playerHealth -= damage;
+      //   this.getWinner();
     },
     specialAttack() {
       const damage = getRandomValue(10, 25);
@@ -49,6 +70,7 @@ const app = Vue.createApp({
 
       // increment counter to unlock special attack
       this.counter++;
+      //   this.getWinner();
     },
 
     healPlayer() {

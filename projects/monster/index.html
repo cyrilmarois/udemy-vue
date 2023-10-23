@@ -17,6 +17,12 @@
       <h1>Monster Slayer</h1>
     </header>
     <div id="game">
+      <section v-if="winner" class="container">
+        <h2>Game over !</h2>
+        <h3 v-if="winner === 'player'">You win !!</h3>
+        <h3 v-else-if="winner === 'monster'">You lost !!</h3>
+        <h3 v-else>It's a draw !!</h3>
+      </section>
       <section id="monster" class="container">
         <h2>Monster Health</h2>
         <div class="healthbar">
