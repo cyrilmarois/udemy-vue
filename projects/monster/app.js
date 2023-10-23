@@ -9,6 +9,17 @@ const app = Vue.createApp({
       monsterHealth: 100,
     };
   },
+  computed: {
+    monsterHealthBarClass() {
+      return { jarvis: true };
+    },
+    monsterHealthBarStyle() {
+      return { width: this.monsterHealth + '%' };
+    },
+    playerHealthBarStyle() {
+      return { width: this.playerHealth + '%' };
+    },
+  },
   methods: {
     attackMonster() {
       const damage = getRandomValue(5, 12); // hit between 5 and 12
