@@ -1,7 +1,9 @@
 <template>
   <li :key="contact.id">
     <h2>{{ contact.firstName }} {{ contact.lastName }}</h2>
-    <button @click="toggleContactDetails">Show Details</button>
+    <button @click="toggleContactDetails">
+      {{ toggleContactInfo ? 'Hide' : 'Show' }} Details
+    </button>
     <ul v-if="toggleContactInfo">
       <li><strong>Phone:</strong> {{ contact.phone }}</li>
       <li><strong>Email:</strong> {{ contact.email }}</li>
