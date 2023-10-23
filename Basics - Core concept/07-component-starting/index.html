@@ -18,16 +18,7 @@
     </header>
     <section id="app">
       <ul>
-        <li v-for="(contact, index) in contacts" :key="contact.id">
-          <h2>{{ contact.firstName }} {{ contact.lastName }}</h2>
-          <button @click="toggleContactDetails">
-            {{ `${toggleDetailLabel} Details` }}
-          </button>
-          <ul v-if="toggleContactInfo">
-            <li><strong>Phone:</strong> {{contact.phone }}</li>
-            <li><strong>Email:</strong> {{ contact.email }}</li>
-          </ul>
-        </li>
+        <contact-list></contact-list>
         <li>
           <h2>Manuel Lorenz</h2>
           <button>Show Details</button>
