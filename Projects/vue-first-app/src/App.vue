@@ -1,5 +1,6 @@
 <template>
   <h2><header>CONTACTS</header></h2>
+  <contact-form @register-contact="addContact"></contact-form>
   <contact-list
     v-for="contact in contacts"
     :key="contact.id"
@@ -39,6 +40,13 @@ export default {
       );
       targetContact.isFavorite = !targetContact.isFavorite;
       console.log(targetContact);
+    },
+    addContact(contactInfo) {
+      console.log({ contactInfo });
+      let tmpContact = contactInfo;
+      tmpContact = { id: this.contacts.length + 1, ...tmpContact };
+      console.log({ tmpContact });
+      this.contacts.push(tmpContact);
     },
   },
 };
