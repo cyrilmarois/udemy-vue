@@ -18,7 +18,7 @@ import BadgeList from './components/BadgeList.vue';
 import UserInfo from './components/UserInfo.vue';
 import AuthorInfo from './components/AuthorInfo.vue';
 import AdminInfo from './components/AdminInfo.vue';
-import TheHeader from './components/TheHeader.vue';
+import TheHeader from './components/layouts/TheHeader.vue';
 
 export default {
   components: {

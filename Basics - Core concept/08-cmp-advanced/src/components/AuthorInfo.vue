@@ -21,8 +21,8 @@
 </template>
 
 <script>
-import BaseCard from './BaseCard.vue';
-import Error from './Error.vue';
+import BaseCard from './UI/BaseCard.vue';
+import Error from './UI/Error.vue';
 
 export default {
   components: {
