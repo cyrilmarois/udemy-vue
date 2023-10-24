@@ -8,7 +8,7 @@
     :last-name="contact.lastName"
     :phone="contact.phone"
     :email="contact.email"
-    :isFavorite="1"
+    :isFavorite="true"
   ></contact-list>
 </template>
 

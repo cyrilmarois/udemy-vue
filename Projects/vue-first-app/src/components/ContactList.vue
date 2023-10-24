@@ -2,7 +2,7 @@
   <li>
     <h2>
       {{ firstName }} {{ lastName }}
-      {{ isFavoriteContact === '1' ? '*' : '' }}
+      {{ isFavoriteContact ? '*' : '' }}
     </h2>
     <button @click="toggleContactDetails">
       {{ toggleContactInfo ? 'Hide' : 'Show' }} Details
@@ -20,7 +20,7 @@ export default {
   // props: ['id', 'firstName', 'lastName', 'phone', 'email', 'isFavorite'],
   props: {
     id: {
-      type: String,
+      type: Number,
       required: true,
     },
     firstName: {
@@ -34,12 +34,9 @@ export default {
     phone: String,
     email: String,
     isFavorite: {
-      type: String,
+      type: Boolean,
       required: false,
-      default: '0', // or any function
-      validator: function (value) {
-        return value === '0' || value === '1';
-      },
+      default: false,
     },
   },
   data() {
@@ -53,11 +50,7 @@ export default {
       this.toggleContactInfo = !this.toggleContactInfo;
     },
     toggleFavoriteContact() {
-      if (this.isFavoriteContact === '1') {
-        this.isFavoriteContact = '0';
-      } else {
-        this.isFavoriteContact = '1';
-      }
+      this.isFavoriteContact = !this.isFavoriteContact;
     },
   },
 };
