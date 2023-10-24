@@ -1,9 +1,13 @@
 <template>
   <li :key="id">
-    <h2>{{ firstName }} {{ lastName }}</h2>
+    <h2>
+      {{ firstName }} {{ lastName }}
+      {{ isFavoriteContact === '1' ? '*' : '' }}
+    </h2>
     <button @click="toggleContactDetails">
       {{ toggleContactInfo ? 'Hide' : 'Show' }} Details
     </button>
+    <button @click="toggleFavoriteContact">Toggle favorite</button>
     <ul v-if="toggleContactInfo">
       <li><strong>Phone:</strong> {{ phone }}</li>
       <li><strong>Email:</strong> {{ email }}</li>
@@ -13,15 +17,23 @@
 
 <script>
 export default {
-  props: ['id', 'firstName', 'lastName', 'phone', 'email'],
+  props: ['id', 'firstName', 'lastName', 'phone', 'email', 'isFavorite'],
   data() {
     return {
       toggleContactInfo: true,
+      isFavoriteContact: this.isFavorite,
     };
   },
   methods: {
     toggleContactDetails() {
       this.toggleContactInfo = !this.toggleContactInfo;
+    },
+    toggleFavoriteContact() {
+      if (this.isFavoriteContact === '1') {
+        this.isFavoriteContact = '0';
+      } else {
+        this.isFavoriteContact = '1';
+      }
     },
   },
 };
