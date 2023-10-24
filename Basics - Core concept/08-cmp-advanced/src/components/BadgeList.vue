@@ -1,6 +1,6 @@
 <template>
   <section>
-    <base-card>
+    <BaseCard>
       <template v-slot:header>
         <h2>Available Badges</h2>
       </template>
@@ -14,7 +14,7 @@
           </li>
         </ul>
       </template>
-    </base-card>
+    </BaseCard>
   </section>
 </template>
 <script>
