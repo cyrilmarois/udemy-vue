@@ -1,3 +1,11 @@
+### Version 0.3.0
+
+Contact list project
+
+- introducing props, emits, ...
+- looping to display components
+- components separation
+
 ### Version 0.2.0
 
 Monster project
