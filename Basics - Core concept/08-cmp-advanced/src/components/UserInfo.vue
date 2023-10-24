@@ -1,21 +1,28 @@
 <template>
   <section>
-    <div>
-      <h3>{{ fullName }}</h3>
-      <base-badge :type="role" :caption="role.toUpperCase()"></base-badge>
-    </div>
-    <p>{{ infoText }}</p>
+    <BaseCard>
+      <header>
+        <h3>{{ fullName }}</h3>
+        <base-badge :type="role" :caption="role.toUpperCase()"></base-badge>
+      </header>
+      <p>{{ infoText }}</p>
+    </BaseCard>
   </section>
 </template>
 
 <script>
+import BaseCard from './BaseCard.vue';
+
 export default {
+  components: {
+    BaseCard,
+  },
   props: ['fullName', 'infoText', 'role'],
 };
 </script>
 
 <style scoped>
-section {
+/* section {
   margin: 2rem auto;
   max-width: 30rem;
   border-radius: 12px;
@@ -27,5 +34,5 @@ section div {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
+} */
 </style>
