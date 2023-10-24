@@ -6,7 +6,7 @@
     last-name="Doe"
     phone="01 02 03 04 06"
     email="johndoe@gmail.com"
-    isFavorite="1"
+    isFavorite="10"
   ></contact-list>
   <contact-list
     id="2"

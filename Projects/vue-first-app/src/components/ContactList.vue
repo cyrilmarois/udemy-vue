@@ -37,6 +37,9 @@ export default {
       type: String,
       required: false,
       default: '0', // or any function
+      validator: function (value) {
+        return value === '0' || value === '1';
+      },
     },
   },
   data() {
