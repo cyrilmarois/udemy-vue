@@ -1,30 +1,25 @@
 <template>
   <h2><header>CONTACTS</header></h2>
-  <contact-list></contact-list>
-  <contact-list></contact-list>
+  <contact-list
+    id="1"
+    first-name="John"
+    last-name="Doe"
+    phone="01 02 03 04 06"
+    email="johndoe@gmail.com"
+  ></contact-list>
+  <contact-list
+    id="2"
+    first-name="Jane"
+    last-name="Doey"
+    phone="06 07 08 09 00"
+    email="janedoey@gmail.com"
+  ></contact-list>
 </template>
 
 <script>
 export default {
   data() {
-    return {
-      contacts: [
-        {
-          id: 1,
-          firstName: 'John',
-          lastName: 'Doe',
-          phone: '01 02 03 04 05',
-          email: 'johndoe@gmail.com',
-        },
-        {
-          id: 2,
-          firstName: 'Jane',
-          lastName: 'Does',
-          phone: '06 07 08 09 00',
-          email: 'janedoes@gmail.com',
-        },
-      ],
-    };
+    return {};
   },
 };
 </script>
