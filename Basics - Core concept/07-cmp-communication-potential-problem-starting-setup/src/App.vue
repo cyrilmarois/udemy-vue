@@ -42,6 +42,16 @@ export default {
       this.activeTopic = this.topics.find((topic) => topic.id === topicId);
     },
   },
+  mounted() {
+    setTimeout(() => {
+      this.topics.push({
+        id: 'events',
+        title: 'Events',
+        description: 'Playing with events is cool',
+        fullText: "But it's still complicated to figured out",
+      });
+    }, 3000);
+  },
 };
 </script>
 
