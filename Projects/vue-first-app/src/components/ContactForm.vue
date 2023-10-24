@@ -46,10 +46,10 @@ export default {
       phone: null,
     };
   },
-  emits: ['register-contact'],
+  emits: ['add-contact'],
   methods: {
     addContact() {
-      this.$emit('register-contact', {
+      this.$emit('add-contact', {
         firstName: this.firstName,
         lastName: this.lastName,
         email: this.email,

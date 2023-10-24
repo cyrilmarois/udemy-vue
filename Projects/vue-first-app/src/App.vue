@@ -1,6 +1,6 @@
 <template>
   <h2><header>CONTACTS</header></h2>
-  <contact-form @register-contact="addContact"></contact-form>
+  <contact-form @add-contact="addContact" />
   <contact-list
     v-for="contact in contacts"
     :key="contact.id"
