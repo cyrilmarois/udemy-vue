@@ -6,6 +6,7 @@
     :key="contact.id"
     v-bind="contact"
     @toggle-favorite="toggleFavoriteStatus"
+    @delete-contact="deleteContact"
   ></contact-list>
 </template>
 
@@ -47,6 +48,9 @@ export default {
       tmpContact = { id: this.contacts.length + 1, ...tmpContact };
       console.log({ tmpContact });
       this.contacts.push(tmpContact);
+    },
+    deleteContact(idx) {
+      this.contacts = this.contacts.filter((contact) => contact.id !== idx);
     },
   },
 };

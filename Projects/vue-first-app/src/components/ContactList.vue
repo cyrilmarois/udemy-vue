@@ -12,6 +12,7 @@
       <li><strong>Phone:</strong> {{ phone }}</li>
       <li><strong>Email:</strong> {{ email }}</li>
     </ul>
+    <button @click="$emit('delete-contact', id)">DELETE</button>
   </li>
 </template>
 
@@ -39,7 +40,7 @@ export default {
       default: false,
     },
   },
-  emits: ['toggle-favorite'],
+  emits: ['toggle-favorite', 'delete-contact'],
   // emits: {
   //   'toggle-favorite': function (id) {
   //     if (id) {
