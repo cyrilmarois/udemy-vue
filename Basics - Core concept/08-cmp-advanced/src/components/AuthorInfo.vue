@@ -9,11 +9,13 @@
       <p>WRITING is mine</p>
       <input type="text" ref="inputText" />
       <button @click="submitPush">POUSSEZ</button>
-      <Error v-if="inputIsInvalid">
-        <h2>input cannot be empty</h2>
-        <p>Please provide some content</p>
-        <button @click="retry">RETRY</button>
-      </Error>
+      <teleport to="body">
+        <Error v-if="inputIsInvalid">
+          <h2>input cannot be empty</h2>
+          <p>Please provide some content</p>
+          <button @click="retry">RETRY</button>
+        </Error>
+      </teleport>
     </BaseCard>
   </section>
 </template>
