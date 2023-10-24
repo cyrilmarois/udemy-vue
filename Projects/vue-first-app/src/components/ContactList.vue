@@ -17,7 +17,28 @@
 
 <script>
 export default {
-  props: ['id', 'firstName', 'lastName', 'phone', 'email', 'isFavorite'],
+  // props: ['id', 'firstName', 'lastName', 'phone', 'email', 'isFavorite'],
+  props: {
+    id: {
+      type: String,
+      required: true,
+    },
+    firstName: {
+      type: String,
+      required: true,
+    },
+    lastName: {
+      type: String,
+      required: true,
+    },
+    phone: String,
+    email: String,
+    isFavorite: {
+      type: String,
+      required: false,
+      default: '0', // or any function
+    },
+  },
   data() {
     return {
       toggleContactInfo: true,

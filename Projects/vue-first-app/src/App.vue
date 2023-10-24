@@ -14,7 +14,6 @@
     last-name="Doey"
     phone="06 07 08 09 00"
     email="janedoey@gmail.com"
-    isFavorite="0"
   ></contact-list>
 </template>
 
