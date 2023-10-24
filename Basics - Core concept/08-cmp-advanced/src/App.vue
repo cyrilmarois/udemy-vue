@@ -7,7 +7,9 @@
       :role="activeUser.role"
     ></UserInfo>
     <BadgeList />
-    <component :is="activeBadge"></component>
+    <keep-alive>
+      <component :is="activeBadge"></component>
+    </keep-alive>
   </div>
 </template>
 
