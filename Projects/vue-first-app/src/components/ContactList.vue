@@ -1,5 +1,5 @@
 <template>
-  <li :key="id">
+  <li>
     <h2>
       {{ firstName }} {{ lastName }}
       {{ isFavoriteContact === '1' ? '*' : '' }}

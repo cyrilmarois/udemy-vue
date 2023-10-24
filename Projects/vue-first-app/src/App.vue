@@ -1,26 +1,38 @@
 <template>
   <h2><header>CONTACTS</header></h2>
   <contact-list
-    id="1"
-    first-name="John"
-    last-name="Doe"
-    phone="01 02 03 04 06"
-    email="johndoe@gmail.com"
-    isFavorite="10"
-  ></contact-list>
-  <contact-list
-    id="2"
-    first-name="Jane"
-    last-name="Doey"
-    phone="06 07 08 09 00"
-    email="janedoey@gmail.com"
+    v-for="contact in contacts"
+    :key="contact.id"
+    :id="contact.id"
+    :first-name="contact.firstName"
+    :last-name="contact.lastName"
+    :phone="contact.phone"
+    :email="contact.email"
+    :isFavorite="1"
   ></contact-list>
 </template>
 
 <script>
 export default {
   data() {
-    return {};
+    return {
+      contacts: [
+        {
+          id: 1,
+          firstName: 'John',
+          lastName: 'Doe',
+          email: 'johndoe@gmail.com',
+          phone: '01 02 03 04 05',
+        },
+        {
+          id: 2,
+          firstName: 'Jane',
+          lastName: 'Doey',
+          phone: '06 07 08 09 00',
+          email: 'janedoey@gmail.com',
+        },
+      ],
+    };
   },
 };
 </script>
