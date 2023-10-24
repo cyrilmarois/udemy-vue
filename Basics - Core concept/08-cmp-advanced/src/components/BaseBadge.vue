@@ -1,10 +1,17 @@
 <template>
-  <span class="badge" :class="classes">{{ caption }}</span>
+  <!-- <span @click="selectBadge(type)" class="badge" :class="classes">{{
+    caption
+  }}</span> -->
+  <button @click="selectBadge(type)" class="badge" :class="classes">
+    {{ caption }}
+  </button>
 </template>
 
 <script>
 export default {
   props: ['type', 'caption'],
+  emits: ['select-badge'],
+  inject: ['selectBadge'],
   computed: {
     classes() {
       return {
