@@ -19,6 +19,23 @@
     <button type="submit">Register</button>
   </form>
 </template>
+
+<style>
+#app input {
+  font: inherit;
+  padding: 0.15rem;
+}
+#app label {
+  font-weight: bold;
+  margin-right: 1rem;
+  width: 7rem;
+  display: inline-block;
+}
+#app form div {
+  margin: 1rem 0;
+}
+</style>
+
 <script>
 export default {
   data() {
