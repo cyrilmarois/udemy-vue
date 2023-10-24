@@ -3,12 +3,7 @@
   <contact-list
     v-for="contact in contacts"
     :key="contact.id"
-    :id="contact.id"
-    :first-name="contact.firstName"
-    :last-name="contact.lastName"
-    :phone="contact.phone"
-    :email="contact.email"
-    :isFavorite="contact.isFavorite"
+    v-bind="contact"
     @toggle-favorite="toggleFavoriteStatus"
   ></contact-list>
 </template>
