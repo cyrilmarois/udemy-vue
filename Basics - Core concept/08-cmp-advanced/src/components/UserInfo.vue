@@ -1,22 +1,22 @@
 <template>
   <section>
-    <BaseCard>
-      <header>
+    <base-card>
+      <template v-slot:header>
         <h3>{{ fullName }}</h3>
         <base-badge :type="role" :caption="role.toUpperCase()"></base-badge>
-      </header>
+      </template>
       <p>{{ infoText }}</p>
-    </BaseCard>
+    </base-card>
   </section>
 </template>
 
 <script>
-import BaseCard from './BaseCard.vue';
+// import BaseCard from './BaseCard.vue';
 
 export default {
-  components: {
-    BaseCard,
-  },
+  // components: {
+  //   BaseCard,
+  // },
   props: ['fullName', 'infoText', 'role'],
 };
 </script>
