@@ -8,7 +8,8 @@
     :last-name="contact.lastName"
     :phone="contact.phone"
     :email="contact.email"
-    :isFavorite="true"
+    :isFavorite="contact.isFavorite"
+    @toggle-favorite="toggleFavoriteStatus"
   ></contact-list>
 </template>
 
@@ -23,6 +24,7 @@ export default {
           lastName: 'Doe',
           email: 'johndoe@gmail.com',
           phone: '01 02 03 04 05',
+          isFavorite: true,
         },
         {
           id: 2,
@@ -30,9 +32,19 @@ export default {
           lastName: 'Doey',
           phone: '06 07 08 09 00',
           email: 'janedoey@gmail.com',
+          isFavorite: false,
         },
       ],
     };
+  },
+  methods: {
+    toggleFavoriteStatus(contactId) {
+      const targetContact = this.contacts.find(
+        (contact) => contact.id === contactId
+      );
+      targetContact.isFavorite = !targetContact.isFavorite;
+      console.log(targetContact);
+    },
   },
 };
 </script>

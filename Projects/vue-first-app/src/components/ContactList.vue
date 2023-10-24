@@ -2,7 +2,7 @@
   <li>
     <h2>
       {{ firstName }} {{ lastName }}
-      {{ isFavoriteContact ? '*' : '' }}
+      {{ isFavorite ? '*' : '' }}
     </h2>
     <button @click="toggleContactDetails">
       {{ toggleContactInfo ? 'Hide' : 'Show' }} Details
@@ -42,7 +42,6 @@ export default {
   data() {
     return {
       toggleContactInfo: true,
-      isFavoriteContact: this.isFavorite,
     };
   },
   methods: {
@@ -50,7 +49,7 @@ export default {
       this.toggleContactInfo = !this.toggleContactInfo;
     },
     toggleFavoriteContact() {
-      this.isFavoriteContact = !this.isFavoriteContact;
+      this.$emit('toggle-favorite', this.id);
     },
   },
 };
