@@ -1,19 +1,21 @@
 <template>
-  <li>
-    <h2>
-      {{ firstName }} {{ lastName }}
-      {{ isFavorite ? '*' : '' }}
-    </h2>
-    <button @click="toggleContactDetails">
-      {{ toggleContactInfo ? 'Hide' : 'Show' }} Details
-    </button>
-    <button @click="toggleFavoriteContact">Toggle favorite</button>
-    <ul v-if="toggleContactInfo">
-      <li><strong>Phone:</strong> {{ phone }}</li>
-      <li><strong>Email:</strong> {{ email }}</li>
-    </ul>
-    <button @click="$emit('delete-contact', id)">DELETE</button>
-  </li>
+  <ul>
+    <li>
+      <h2>
+        {{ firstName }} {{ lastName }}
+        {{ isFavorite ? '*' : '' }}
+      </h2>
+      <button @click="toggleContactDetails">
+        {{ toggleContactInfo ? 'Hide' : 'Show' }} Details
+      </button>
+      <button @click="toggleFavoriteContact">Toggle favorite</button>
+      <ul v-if="toggleContactInfo">
+        <li><strong>Phone:</strong> {{ phone }}</li>
+        <li><strong>Email:</strong> {{ email }}</li>
+      </ul>
+      <button @click="$emit('delete-contact', id)">DELETE</button>
+    </li>
+  </ul>
 </template>
 
 <script>
