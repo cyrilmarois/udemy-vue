@@ -8,6 +8,7 @@
         >
       </div>
       <p v-if="isLoading">Loading...</p>
+      <p v-else-if="!isLoading && error">{{ error }}</p>
       <p v-else-if="!isLoading && (!results || results.length === 0)">
         No data to load
       </p>
@@ -34,17 +35,25 @@ export default {
   data() {
     return {
       isLoading: false,
+      error: null,
       results: [],
     };
   },
   methods: {
     async getExperiences() {
-      this.isLoading = true;
-      const res = await axios.get(
-        'https://vue-htt-demo-c141a-default-rtdb.europe-west1.firebasedatabase.app/surveys.json'
-      );
-      this.isLoading = false;
-      this.results = res.data;
+      try {
+        this.isLoading = true;
+        this.error = null;
+        const res = await axios.get(
+          'https://vue-htt-demo-c141a-default-rtdb.europe-west1.firebasedatabase.app/surveys.json'
+        );
+        this.isLoading = false;
+        this.results = res.data;
+      } catch (err) {
+        this.isLoading = false;
+        this.error = err.message;
+        console.log(this.isLoading, this.error);
+      }
     },
     // getExperiences() {
     //   this.isLoading = true;
