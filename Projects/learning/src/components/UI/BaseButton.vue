@@ -5,9 +5,6 @@
 <script>
 export default {
   props: ['type', 'mode'],
-  mounted() {
-    console.log({ class: this.$refs.class });
-  },
 };
 </script>
 
