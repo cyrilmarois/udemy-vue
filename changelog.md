@@ -1,3 +1,7 @@
+### Version 0.5.0
+
+Discover HTTP requests
+
 ### Version 0.4.0
 
 Learning project
