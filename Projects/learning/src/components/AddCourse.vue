@@ -24,7 +24,7 @@
     </form>
   </base-card>
   <teleport to="body">
-    <base-dialog v-if="isFormInvalid === true">
+    <base-dialog v-if="isFormInvalid === true" @closeModal="closeModal">
       <template #title>
         <h2>Ooops !</h2>
       </template>
@@ -32,7 +32,7 @@
         <p>Please provide some data</p>
       </template>
       <template #actions>
-        <base-button @click="closeModal">Close</base-button>
+        <base-button @click="closeModal">Okayy</base-button>
       </template>
     </base-dialog>
   </teleport>
