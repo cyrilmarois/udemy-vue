@@ -1,6 +1,7 @@
 export default {
   login() {},
   async signup(context, payload) {
+    console.log({ payload });
     const response = await fetch(
       'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyD_7nMbeNJz4tG8FHtTqqzA_akLhFRMQc4',
       {

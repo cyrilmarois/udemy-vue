@@ -10,7 +10,7 @@
         <input type="password" id="password" v-model.trim="password" />
       </div>
       <p v-if="isFormInvalid">Invalid email or password</p>
-      <base-button @click="switchAuthMode">{{ switchLoginLabel }}</base-button>
+      <base-button type="submit">{{ switchLoginLabel }}</base-button>
       <base-button type="button" mode="flat" @click="switchAuthMode">{{
         switchSignupLabel
       }}</base-button>
@@ -32,14 +32,14 @@ export default {
       if (this.mode === 'login') {
         return 'Login';
       } else {
-        return 'Signup instead';
+        return 'Signup';
       }
     },
     switchSignupLabel() {
-      if (this.mode === 'signup') {
-        return 'Login instead';
-      } else {
+      if (this.mode === 'login') {
         return 'Signup instead';
+      } else {
+        return 'Login instead';
       }
     },
   },
@@ -62,6 +62,15 @@ export default {
         return;
       }
       // authenticate user
+      console.log({ mode: this.mode });
+      if (this.mode === 'login') {
+        //.. log
+      } else {
+        this.$store.dispatch('signup', {
+          email: this.email,
+          password: this.password,
+        });
+      }
     },
   },
 };
