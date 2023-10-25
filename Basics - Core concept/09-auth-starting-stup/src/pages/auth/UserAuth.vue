@@ -9,6 +9,7 @@
         <label for="password">Password</label>
         <input type="password" id="password" v-model.trim="password" />
       </div>
+      <p v-if="isFormInvalid">Invalid email or password</p>
       <base-button @click="switchAuthMode('login')">Login</base-button>
       <base-button type="button" mode="flat" @click="switchAuthMode('signup')"
         >Sign up</base-button
@@ -22,7 +23,7 @@ export default {
     return {
       email: '',
       password: '',
-      isFormInvalid: true,
+      isFormInvalid: false,
       mode: 'login',
     };
   },
@@ -31,6 +32,7 @@ export default {
       this.mode = tab;
     },
     submitForm() {
+      this.isFormInvalid = false;
       if (
         this.email === '' ||
         !this.email.includes('@') ||
