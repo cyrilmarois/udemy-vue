@@ -52,7 +52,6 @@ export default {
       } catch (err) {
         this.isLoading = false;
         this.error = err.message;
-        console.log(this.isLoading, this.error);
       }
     },
     // getExperiences() {
@@ -76,8 +75,11 @@ export default {
     //         });
     //       }
     //       this.results = data;
-    //       console.log(this.isLoading, this.results);
     //     })
+    //     .catch((err) => {
+    //       this.isLoading = false;
+    //       this.error = err.message;
+    //     });
     // },
   },
   mounted() {
