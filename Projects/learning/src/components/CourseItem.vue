@@ -6,7 +6,7 @@
         <base-button mode="flat">DELETE</base-button>
       </header>
       <p>
-        <span>Description</span>: <span>{{ description }}</span>
+        {{ description }}
       </p>
       <nav>
         <a :href="link">View resource</a>
