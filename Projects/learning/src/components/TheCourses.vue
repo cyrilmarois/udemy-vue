@@ -2,12 +2,10 @@
   <base-card>
     <base-button
       @click="selectTab('course-list')"
-      :mode="tabSelected === 'course-list' ? null : 'flat'"
+      :mode="storedCourseButtonMode"
       >Courses List</base-button
     >
-    <base-button
-      @click="selectTab('add-course')"
-      :mode="tabSelected === 'add-course' ? null : 'flat'"
+    <base-button @click="selectTab('add-course')" :mode="addCourseButtonMode"
       >Add course</base-button
     >
   </base-card>
@@ -29,6 +27,14 @@ export default {
     return {
       courses: this.storedResources,
     };
+  },
+  computed: {
+    storedCourseButtonMode() {
+      return this.tabSelected === 'course-list' ? null : 'flat';
+    },
+    addCourseButtonMode() {
+      return this.tabSelected === 'add-course' ? null : 'flat';
+    },
   },
   data() {
     return {
