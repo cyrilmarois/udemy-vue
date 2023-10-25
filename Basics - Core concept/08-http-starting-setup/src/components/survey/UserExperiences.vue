@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+// import axios from 'axios';
 import SurveyResult from './SurveyResult.vue';
 
 export default {
@@ -33,11 +33,32 @@ export default {
     };
   },
   methods: {
-    async getExperiences() {
-      const res = await axios.get(
+    // async getExperiences() {
+    //   const res = await axios.get(
+    //     'https://vue-htt-demo-c141a-default-rtdb.europe-west1.firebasedatabase.app/surveys.json'
+    //   );
+    //   this.results = res.data;
+    // },
+    getExperiences() {
+      fetch(
         'https://vue-htt-demo-c141a-default-rtdb.europe-west1.firebasedatabase.app/surveys.json'
-      );
-      this.results = res.data;
+      )
+        .then((res) => {
+          if (res.status === 200) {
+            return res.json();
+          }
+        })
+        .then((data) => {
+          const results = [];
+          for (const id in data) {
+            results.push({
+              id: id,
+              name: data[id].name,
+              ratings: data[id].ratings,
+            });
+          }
+          this.results = data;
+        });
     },
   },
 };
