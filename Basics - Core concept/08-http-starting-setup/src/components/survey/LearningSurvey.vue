@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+// import axios from 'axios';
 
 export default {
   data() {
@@ -76,35 +76,37 @@ export default {
       //   rating: this.chosenRating,
       // });
 
-      // fetch(
-      //   'https://vue-htt-demo-c141a-default-rtdb.europe-west1.firebasedatabase.app/surveys.json',
-      //   {
-      //     method: 'POST',
-      //     headers: {
-      //       'Content-type': 'application/json',
-      //     },
-      //     body: JSON.stringify({
-      //       name: this.enteredName,
-      //       rating: this.chosenRating,
-      //     }),
-      //   }
-      // );
+      fetch(
+        'https://vue-htt-demo-c141a-default-rtdb.europe-west1.firebasedatabase.app/surveys',
+        {
+          method: 'POST',
+          headers: {
+            'Content-type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: this.enteredName,
+            rating: this.chosenRating,
+          }),
+        }
+      ).catch((err) => {
+        this.error = err.message;
+      });
 
-      axios({
-        method: 'POST',
-        url: 'https://vue-htt-demo-c141a-default-rtdb.europe-west1.firebasedatabase.app/surveys.json',
-        data: {
-          name: this.enteredName,
-          rating: this.chosenRating,
-        },
-      })
-        .then((res) => {
-          console.log(res);
-        })
-        .catch((err) => {
-          console.log(err);
-          this.error = err.message;
-        });
+      // axios({
+      //   method: 'POST',
+      //   url: 'https://vue-htt-demo-c141a-default-rtdb.europe-west1.firebasedatabase.app/surveys.json',
+      //   data: {
+      //     name: this.enteredName,
+      //     rating: this.chosenRating,
+      //   },
+      // })
+      //   .then((res) => {
+      //     console.log(res);
+      //   })
+      //   .catch((err) => {
+      //     console.log(err);
+      //     this.error = err.message;
+      //   });
 
       // axios
       //   .post(
