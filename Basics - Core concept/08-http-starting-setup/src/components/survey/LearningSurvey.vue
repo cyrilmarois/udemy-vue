@@ -77,20 +77,26 @@ export default {
       // });
 
       fetch(
-        'https://vue-htt-demo-c141a-default-rtdb.europe-west1.firebasedatabase.app/surveys',
+        'https://vue-htt-demo-c141a-default-rtdb.europe-west1.firebasedatabase.app/surveys.json',
         {
           method: 'POST',
           headers: {
             'Content-type': 'application/json',
           },
-          body: JSON.stringify({
+          body: {
             name: this.enteredName,
             rating: this.chosenRating,
-          }),
+          },
         }
-      ).catch((err) => {
-        this.error = err.message;
-      });
+      )
+        .then((res) => {
+          if (res.response !== 200) {
+            throw new Error('Internal error...');
+          }
+        })
+        .catch((err) => {
+          this.error = err.message;
+        });
 
       // axios({
       //   method: 'POST',
