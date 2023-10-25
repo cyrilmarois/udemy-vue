@@ -7,7 +7,8 @@
           >Load Submitted Experiences</base-button
         >
       </div>
-      <ul>
+      <p v-if="isLoading">Loading...</p>
+      <ul v-else>
         <survey-result
           v-for="result in results"
           :key="result.id"
@@ -20,7 +21,7 @@
 </template>
 
 <script>
-// import axios from 'axios';
+import axios from 'axios';
 import SurveyResult from './SurveyResult.vue';
 
 export default {
@@ -29,37 +30,45 @@ export default {
   },
   data() {
     return {
+      isLoading: false,
       results: [],
     };
   },
   methods: {
-    // async getExperiences() {
-    //   const res = await axios.get(
-    //     'https://vue-htt-demo-c141a-default-rtdb.europe-west1.firebasedatabase.app/surveys.json'
-    //   );
-    //   this.results = res.data;
-    // },
-    getExperiences() {
-      fetch(
+    async getExperiences() {
+      this.isLoading = true;
+      const res = await axios.get(
         'https://vue-htt-demo-c141a-default-rtdb.europe-west1.firebasedatabase.app/surveys.json'
-      )
-        .then((res) => {
-          if (res.status === 200) {
-            return res.json();
-          }
-        })
-        .then((data) => {
-          const results = [];
-          for (const id in data) {
-            results.push({
-              id: id,
-              name: data[id].name,
-              ratings: data[id].ratings,
-            });
-          }
-          this.results = data;
-        });
+      );
+      setTimeout(() => {
+        this.isLoading = false;
+      }, 5000);
+      this.results = res.data;
     },
+    // getExperiences() {
+    //   fetch(
+    //     'https://vue-htt-demo-c141a-default-rtdb.europe-west1.firebasedatabase.app/surveys.json'
+    //   )
+    //     .then((res) => {
+    //       if (res.status === 200) {
+    //         return res.json();
+    //       }
+    //     })
+    //     .then((data) => {
+    //       const results = [];
+    //       for (const id in data) {
+    //         results.push({
+    //           id: id,
+    //           name: data[id].name,
+    //           ratings: data[id].ratings,
+    //         });
+    //       }
+    //       this.results = data;
+    //     });
+    // },
+  },
+  mounted() {
+    this.getExperiences();
   },
 };
 </script>
