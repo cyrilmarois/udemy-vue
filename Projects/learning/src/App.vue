@@ -1,24 +1,22 @@
 <template>
   <ul>
-    <li v-for="storedResource in storedResources" :key="storedResource.id">
-      <p>
-        <span>Title</span>: <span>{{ storedResource.title }}</span>
-      </p>
-      <p>
-        <span>Description</span>: <span>{{ storedResource.description }}</span>
-      </p>
-      <p>
-        <span>Resource</span>:
-        <span>
-          <a :href="storedResource.link">{{ storedResource.link }}</a>
-        </span>
-      </p>
-    </li>
+    <CourseItem
+      v-for="storedResource in storedResources"
+      :key="storedResource.id"
+      v-bind="storedResource"
+    >
+    </CourseItem>
   </ul>
 </template>
 
 <script>
+import CourseItem from './components/CourseItem.vue';
+
 export default {
+  components: {
+    CourseItem,
+  },
+
   data() {
     return {
       storedResources: [
