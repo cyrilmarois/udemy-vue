@@ -65,6 +65,11 @@ export default {
       } else {
         this.isFormInvalid = false;
         this.addCourse(inputTitle, inputDescription, inputLink);
+
+        // reset fields
+        this.inputTitle = '';
+        this.inputDescription = '';
+        this.inputLink = '';
       }
     },
   },
