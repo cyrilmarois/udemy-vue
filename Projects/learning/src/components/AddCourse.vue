@@ -1,6 +1,6 @@
 <template>
   <base-card>
-    <form @submit.prevent="addCourse">
+    <form @submit.prevent="submitForm">
       <div class="form-control">
         <label for="title">Title</label>
         <input type="text" id="title" name="title" v-model="inputTitle" />
@@ -19,7 +19,7 @@
         <input type="url" id="link" name="link" v-model="inputLink" />
       </div>
       <div>
-        <base-button>Add course</base-button>
+        <base-button type="submit">Add course</base-button>
       </div>
     </form>
   </base-card>
@@ -33,9 +33,10 @@ export default {
       inputLink: '',
     };
   },
+  inject: ['addCourse'],
   methods: {
-    addCourse() {
-      console.log(this.inputTitle, this.inputDescription, this.inputLink);
+    submitForm() {
+      this.addCourse(this.inputTitle, this.inputDescription, this.inputLink);
     },
   },
 };

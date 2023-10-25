@@ -26,6 +26,7 @@ export default {
   provide() {
     return {
       courses: this.storedResources,
+      addCourse: this.addCourse,
     };
   },
   computed: {
@@ -62,6 +63,18 @@ export default {
       } else if (tab === 'add-course') {
         this.tabSelected = 'add-course';
       }
+    },
+    addCourse(title, description, url) {
+      console.log(title, description, url);
+      const newCourse = {
+        id: title,
+        title: title,
+        description: description,
+        link: url,
+      };
+      this.storedResources.unshift(newCourse);
+      console.log(this.storedResources);
+      this.tabSelected = 'course-list';
     },
   },
 };
