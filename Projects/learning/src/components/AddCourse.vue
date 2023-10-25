@@ -3,7 +3,7 @@
     <form @submit.prevent="addCourse">
       <div class="form-control">
         <label for="title">Title</label>
-        <input type="text" id="title" name="title" v-model="title" />
+        <input type="text" id="title" name="title" v-model="inputTitle" />
       </div>
       <div class="form-control">
         <label for="description"></label>
@@ -11,12 +11,12 @@
           id="description"
           name="description"
           rows="3"
-          v-model="description"
+          v-model="inputDescription"
         ></textarea>
       </div>
       <div class="form-control">
         <label for="link">Link</label>
-        <input type="url" id="link" name="link" v-model="link" />
+        <input type="url" id="link" name="link" v-model="inputLink" />
       </div>
       <div>
         <base-button>Add course</base-button>
@@ -28,14 +28,14 @@
 export default {
   data() {
     return {
-      title: '',
-      description: '',
-      link: '',
+      inputTitle: '',
+      inputDescription: '',
+      inputLink: '',
     };
   },
   methods: {
     addCourse() {
-      console.log(this.title, this.description, this.link);
+      console.log(this.inputTitle, this.inputDescription, this.inputLink);
     },
   },
 };
