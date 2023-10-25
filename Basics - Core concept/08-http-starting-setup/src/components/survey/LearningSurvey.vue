@@ -41,6 +41,7 @@
         <p v-if="invalidInput">
           One or more input fields are invalid. Please check your provided data.
         </p>
+        <p v-if="error">{{ error }}</p>
         <div>
           <base-button>Submit</base-button>
         </div>
@@ -58,9 +59,10 @@ export default {
       enteredName: '',
       chosenRating: null,
       invalidInput: false,
+      error: null,
     };
   },
-  emits: ['survey-submit'],
+  // emits: ['survey-submit'],
   methods: {
     submitSurvey() {
       if (this.enteredName === '' || !this.chosenRating) {
@@ -69,10 +71,10 @@ export default {
       }
       this.invalidInput = false;
 
-      this.$emit('survey-submit', {
-        userName: this.enteredName,
-        rating: this.chosenRating,
-      });
+      // this.$emit('survey-submit', {
+      //   userName: this.enteredName,
+      //   rating: this.chosenRating,
+      // });
 
       // fetch(
       //   'https://vue-htt-demo-c141a-default-rtdb.europe-west1.firebasedatabase.app/surveys.json',
@@ -91,13 +93,18 @@ export default {
       axios({
         method: 'POST',
         url: 'https://vue-htt-demo-c141a-default-rtdb.europe-west1.firebasedatabase.app/surveys.json',
-        data: JSON.stringify({
+        data: {
           name: this.enteredName,
           rating: this.chosenRating,
-        }),
-      }).then(function (res) {
-        console.log(res);
-      });
+        },
+      })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+          this.error = err.message;
+        });
 
       // axios
       //   .post(
@@ -107,15 +114,16 @@ export default {
       //       rating: this.chosenRating,
       //     }
       //   )
-      //   .then(function (response) {
+      //   .then((response) => {
       //     console.log(response);
       //   })
-      //   .catch(function (err) {
+      //   .catch((err) => {
       //     console.log(err);
       //   });
 
       this.enteredName = '';
       this.chosenRating = null;
+      this.error = null;
     },
   },
 };
