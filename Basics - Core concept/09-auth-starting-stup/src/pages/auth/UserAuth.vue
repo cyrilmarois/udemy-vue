@@ -10,10 +10,10 @@
         <input type="password" id="password" v-model.trim="password" />
       </div>
       <p v-if="isFormInvalid">Invalid email or password</p>
-      <base-button @click="switchAuthMode('login')">Login</base-button>
-      <base-button type="button" mode="flat" @click="switchAuthMode('signup')"
-        >Sign up</base-button
-      >
+      <base-button @click="switchAuthMode">{{ switchLoginLabel }}</base-button>
+      <base-button type="button" mode="flat" @click="switchAuthMode">{{
+        switchSignupLabel
+      }}</base-button>
     </form>
   </base-card>
 </template>
@@ -27,9 +27,29 @@ export default {
       mode: 'login',
     };
   },
+  computed: {
+    switchLoginLabel() {
+      if (this.mode === 'login') {
+        return 'Login';
+      } else {
+        return 'Signup instead';
+      }
+    },
+    switchSignupLabel() {
+      if (this.mode === 'signup') {
+        return 'Login instead';
+      } else {
+        return 'Signup instead';
+      }
+    },
+  },
   methods: {
-    switchAuthMode(tab) {
-      this.mode = tab;
+    switchAuthMode() {
+      if (this.mode === 'login') {
+        this.mode = 'signup';
+      } else {
+        this.mode = 'login';
+      }
     },
     submitForm() {
       this.isFormInvalid = false;
