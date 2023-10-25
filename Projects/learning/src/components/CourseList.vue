@@ -3,6 +3,7 @@
     <CourseItem
       v-for="course in courses"
       :key="course.id"
+      :id="course.id"
       :title="course.title"
       :description="course.description"
       :link="course.link"

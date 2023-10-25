@@ -27,6 +27,7 @@ export default {
     return {
       courses: this.storedResources,
       addCourse: this.addCourse,
+      deleteCourse: this.deleteCourse,
     };
   },
   computed: {
@@ -75,6 +76,12 @@ export default {
       this.storedResources.unshift(newCourse);
       console.log(this.storedResources);
       this.tabSelected = 'course-list';
+    },
+    deleteCourse(idx) {
+      const courseIdx = this.storedResources.findIndex(
+        (course) => course.id === idx
+      );
+      this.storedResources.splice(courseIdx, 1);
     },
   },
 };

@@ -3,7 +3,7 @@
     <base-card>
       <header>
         <h3>{{ title }}</h3>
-        <base-button mode="flat">DELETE</base-button>
+        <base-button mode="flat" @click="deleteCourse(id)">DELETE</base-button>
       </header>
       <p>
         {{ description }}
@@ -18,6 +18,10 @@
 <script>
 export default {
   props: {
+    id: {
+      type: String,
+      required: true,
+    },
     title: {
       type: String,
       required: true,
@@ -31,6 +35,7 @@ export default {
       required: true,
     },
   },
+  inject: ['deleteCourse'],
 };
 </script>
 <style scoped>
