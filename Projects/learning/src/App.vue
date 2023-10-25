@@ -1,20 +1,13 @@
 <template>
-  <ul>
-    <CourseItem
-      v-for="storedResource in storedResources"
-      :key="storedResource.id"
-      v-bind="storedResource"
-    >
-    </CourseItem>
-  </ul>
+  <CourseList :courses="storedResources" />
 </template>
 
 <script>
-import CourseItem from './components/CourseItem.vue';
+import CourseList from './components/CourseList.vue';
 
 export default {
   components: {
-    CourseItem,
+    CourseList,
   },
 
   data() {
@@ -37,3 +30,19 @@ export default {
   },
 };
 </script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  margin: 0;
+}
+</style>
