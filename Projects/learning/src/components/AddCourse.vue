@@ -23,11 +23,25 @@
       </div>
     </form>
   </base-card>
+  <teleport to="body">
+    <base-dialog v-if="isFormInvalid === true">
+      <template #title>
+        <h2>Ooops !</h2>
+      </template>
+      <template #default>
+        <p>Please provide some data</p>
+      </template>
+      <template #actions>
+        <base-button @click="closeModal">Close</base-button>
+      </template>
+    </base-dialog>
+  </teleport>
 </template>
 <script>
 export default {
   data() {
     return {
+      isFormInvalid: false,
       inputTitle: '',
       inputDescription: '',
       inputLink: '',
@@ -35,8 +49,23 @@ export default {
   },
   inject: ['addCourse'],
   methods: {
+    closeModal() {
+      this.isFormInvalid = false;
+    },
     submitForm() {
-      this.addCourse(this.inputTitle, this.inputDescription, this.inputLink);
+      const inputTitle = this.inputTitle;
+      const inputDescription = this.inputDescription;
+      const inputLink = this.inputLink;
+      if (
+        inputTitle.trim() === '' ||
+        inputDescription.trim() === '' ||
+        inputLink.trim() === ''
+      ) {
+        this.isFormInvalid = true;
+      } else {
+        this.isFormInvalid = false;
+        this.addCourse(inputTitle, inputDescription, inputLink);
+      }
     },
   },
 };
