@@ -16,7 +16,7 @@
       </div>
       <div class="form-control">
         <label for="link">Link</label>
-        <input type="text" id="link" name="link" v-model="link" />
+        <input type="url" id="link" name="link" v-model="link" />
       </div>
       <div>
         <base-button>Add course</base-button>
