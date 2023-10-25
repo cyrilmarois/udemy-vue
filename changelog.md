@@ -1,3 +1,7 @@
+### Version 0.4.0
+
+Learning project
+
 ### Version 0.3.0
 
 Contact list project
