@@ -1,19 +1,50 @@
 <template>
   <base-card>
-    <form>
+    <form @submit.prevent="submitForm">
       <div class="form-control">
         <label for="email">E-mail</label>
-        <input type="email" id="email" />
+        <input type="email" id="email" v-model.trim="email" />
       </div>
       <div class="form-control">
         <label for="password">Password</label>
-        <input type="password" id="password" />
+        <input type="password" id="password" v-model.trim="password" />
       </div>
-      <base-button>Login</base-button>
-      <base-button type="button" mode="flat">Sign up</base-button>
+      <base-button @click="switchAuthMode('login')">Login</base-button>
+      <base-button type="button" mode="flat" @click="switchAuthMode('signup')"
+        >Sign up</base-button
+      >
     </form>
   </base-card>
 </template>
+<script>
+export default {
+  data() {
+    return {
+      email: '',
+      password: '',
+      isFormInvalid: true,
+      mode: 'login',
+    };
+  },
+  methods: {
+    switchAuthMode(tab) {
+      this.mode = tab;
+    },
+    submitForm() {
+      if (
+        this.email === '' ||
+        !this.email.includes('@') ||
+        this.password.length < 6
+      ) {
+        this.isFormInvalid = true;
+        return;
+      }
+      // authenticate user
+    },
+  },
+};
+</script>
+
 <style scoped>
 form {
   margin: 1rem;
