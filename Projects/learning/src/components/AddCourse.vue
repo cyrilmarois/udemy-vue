@@ -1,17 +1,22 @@
 <template>
   <base-card>
-    <form>
+    <form @submit.prevent="addCourse">
       <div class="form-control">
         <label for="title">Title</label>
-        <input type="text" id="title" name="title" />
+        <input type="text" id="title" name="title" v-model="title" />
       </div>
       <div class="form-control">
         <label for="description"></label>
-        <textarea id="description" name="description" rows="3"></textarea>
+        <textarea
+          id="description"
+          name="description"
+          rows="3"
+          v-model="description"
+        ></textarea>
       </div>
       <div class="form-control">
         <label for="link">Link</label>
-        <input type="text" id="title" name="title" />
+        <input type="text" id="link" name="link" v-model="link" />
       </div>
       <div>
         <base-button>Add course</base-button>
@@ -19,6 +24,23 @@
     </form>
   </base-card>
 </template>
+<script>
+export default {
+  data() {
+    return {
+      title: '',
+      description: '',
+      link: '',
+    };
+  },
+  methods: {
+    addCourse() {
+      console.log(this.title, this.description, this.link);
+    },
+  },
+};
+</script>
+
 <style scoped>
 label {
   font-weight: bold;
