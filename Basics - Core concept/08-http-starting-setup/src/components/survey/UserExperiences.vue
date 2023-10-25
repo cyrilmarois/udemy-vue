@@ -8,6 +8,9 @@
         >
       </div>
       <p v-if="isLoading">Loading...</p>
+      <p v-else-if="!isLoading && (!results || results.length === 0)">
+        No data to load
+      </p>
       <ul v-else>
         <survey-result
           v-for="result in results"
@@ -40,12 +43,11 @@ export default {
       const res = await axios.get(
         'https://vue-htt-demo-c141a-default-rtdb.europe-west1.firebasedatabase.app/surveys.json'
       );
-      setTimeout(() => {
-        this.isLoading = false;
-      }, 5000);
+      this.isLoading = false;
       this.results = res.data;
     },
     // getExperiences() {
+    //   this.isLoading = true;
     //   fetch(
     //     'https://vue-htt-demo-c141a-default-rtdb.europe-west1.firebasedatabase.app/surveys.json'
     //   )
@@ -55,16 +57,18 @@ export default {
     //       }
     //     })
     //     .then((data) => {
+    //       this.isLoading = false;
     //       const results = [];
     //       for (const id in data) {
     //         results.push({
     //           id: id,
     //           name: data[id].name,
-    //           ratings: data[id].ratings,
+    //           rating: data[id].rating,
     //         });
     //       }
     //       this.results = data;
-    //     });
+    //       console.log(this.isLoading, this.results);
+    //     })
     // },
   },
   mounted() {
