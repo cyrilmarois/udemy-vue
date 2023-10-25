@@ -1,15 +1,17 @@
 <template>
   <li>
-    <h3>{{ title }}</h3>
+    <div>
+      <header>
+        <h3>{{ title }}</h3>
+        <button>DELETE</button>
+      </header>
+    </div>
     <p>
       <span>Description</span>: <span>{{ description }}</span>
     </p>
-    <p>
-      <span>Resource</span>:
-      <span>
-        <a :href="link">{{ link }}</a>
-      </span>
-    </p>
+    <nav>
+      <a :href="link">View resource</a>
+    </nav>
   </li>
 </template>
 
