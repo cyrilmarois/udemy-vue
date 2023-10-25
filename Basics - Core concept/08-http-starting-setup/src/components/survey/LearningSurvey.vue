@@ -50,6 +50,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   data() {
     return {
@@ -72,19 +74,45 @@ export default {
         rating: this.chosenRating,
       });
 
-      fetch(
-        'https://vue-htt-demo-c141a-default-rtdb.europe-west1.firebasedatabase.app/surveys.json',
-        {
-          method: 'POST',
-          headers: {
-            'Content-type': 'application/json',
-          },
-          body: JSON.stringify({
-            name: this.enteredName,
-            rating: this.chosenRating,
-          }),
-        }
-      );
+      // fetch(
+      //   'https://vue-htt-demo-c141a-default-rtdb.europe-west1.firebasedatabase.app/surveys.json',
+      //   {
+      //     method: 'POST',
+      //     headers: {
+      //       'Content-type': 'application/json',
+      //     },
+      //     body: JSON.stringify({
+      //       name: this.enteredName,
+      //       rating: this.chosenRating,
+      //     }),
+      //   }
+      // );
+
+      axios({
+        method: 'POST',
+        url: 'https://vue-htt-demo-c141a-default-rtdb.europe-west1.firebasedatabase.app/surveys.json',
+        data: JSON.stringify({
+          name: this.enteredName,
+          rating: this.chosenRating,
+        }),
+      }).then(function (res) {
+        console.log(res);
+      });
+
+      // axios
+      //   .post(
+      //     'https://vue-htt-demo-c141a-default-rtdb.europe-west1.firebasedatabase.app/surveys.json',
+      //     {
+      //       name: this.enteredName,
+      //       rating: this.chosenRating,
+      //     }
+      //   )
+      //   .then(function (response) {
+      //     console.log(response);
+      //   })
+      //   .catch(function (err) {
+      //     console.log(err);
+      //   });
 
       this.enteredName = '';
       this.chosenRating = null;
