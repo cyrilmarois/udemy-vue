@@ -3,7 +3,7 @@ export default {
   async signup(context, payload) {
     console.log({ payload });
     const response = await fetch(
-      'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyD_7nMbeNJz4tG8FHtTqqzA_akLhFRMQc4',
+      'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyD_7nMbeNJz4tG8FHtTqqzA_akLhFRMQc4',
       {
         method: 'POST',
         body: JSON.stringify({
@@ -15,14 +15,13 @@ export default {
     );
 
     const responseData = await response.json();
-    console.log(responseData);
+    console.log({ responseData });
 
     if (!response.status !== 200) {
       const error = new Error(responseData.message || 'Authentication failed');
       throw error;
     }
 
-    console.log(responseData);
     context.commit('setUser', {
       token: responseData.idToken,
       userId: responseData.localId,
