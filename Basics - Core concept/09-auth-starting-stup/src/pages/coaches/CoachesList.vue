@@ -1,6 +1,10 @@
 <template>
   <div>
-    <base-dialog :show="!!error" title="An error occurred!" @close="handleError">
+    <base-dialog
+      :show="!!error"
+      title="An error occurred!"
+      @close="handleError"
+    >
       <p>{{ error }}</p>
     </base-dialog>
     <section>
@@ -9,8 +13,12 @@
     <section>
       <base-card>
         <div class="controls">
-          <base-button mode="outline" @click="loadCoaches(true)">Refresh</base-button>
-          <base-button v-if="!isCoach && !isLoading" link to="/register">Register as Coach</base-button>
+          <base-button mode="outline" @click="loadCoaches(true)"
+            >Refresh</base-button
+          >
+          <base-button v-if="!isCoach && !isLoading" link to="/register"
+            >Register as Coach</base-button
+          >
         </div>
         <div v-if="isLoading">
           <base-spinner></base-spinner>
@@ -58,6 +66,7 @@ export default {
     },
     filteredCoaches() {
       const coaches = this.$store.getters['coaches/coaches'];
+      console.log({ coaches });
       return coaches.filter((coach) => {
         if (this.activeFilters.frontend && coach.areas.includes('frontend')) {
           return true;
