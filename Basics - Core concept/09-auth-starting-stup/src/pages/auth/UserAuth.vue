@@ -84,6 +84,7 @@ export default {
         } else {
           await this.$store.dispatch('signup', payload);
         }
+        this.$router.replace('/coaches');
       } catch (err) {
         console.log({ err });
         this.error =
