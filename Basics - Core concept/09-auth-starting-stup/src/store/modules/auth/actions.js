@@ -52,6 +52,16 @@ export default {
       token: responseData.idToken,
       userId: responseData.localId,
       tokenExpiration: responseData.expiresIn,
+      registered: responseData.registered,
+    });
+  },
+  logout(context) {
+    console.log({ context });
+    context.commit('setUser', {
+      token: null,
+      userId: null,
+      tokenExpiration: null,
+      registered: false,
     });
   },
 };
