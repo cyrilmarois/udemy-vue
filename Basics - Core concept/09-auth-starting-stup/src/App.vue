@@ -15,7 +15,13 @@ export default {
   components: {
     TheHeader,
   },
-  beforeMount() {
+  computed: {
+    didAutoLogout() {
+      return this.$store.getters.didAutoLogout;
+    },
+  },
+  created() {
+    this.$store.dispatch('autoLogin');
     // axios.post(
     //   'https://vue-htt-demo-c141a-default-rtdb.europe-west1.firebasedatabase.app/coaches.json',
     //   {
@@ -27,6 +33,14 @@ export default {
     //     hourlyRate: 66,
     //   }
     // );
+  },
+  watch: {
+    didAutoLogout(currentValue, oldValue) {
+      console.log({ currentValue, oldValue });
+      if (currentValue && currentValue !== oldValue) {
+        this.$router.replace('/coaches');
+      }
+    },
   },
 };
 </script>

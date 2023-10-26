@@ -44,7 +44,7 @@ export default {
     const expirationTime = new Date().getTime() + convertExpirationIn;
     console.log({ expirationTime });
     timer = setTimeout(() => {
-      context.dispatch('logout');
+      context.dispatch('autoLogout');
     }, convertExpirationIn);
 
     localStorage.setItem('token', responseData.idToken);
@@ -85,7 +85,7 @@ export default {
     }
 
     timer = setTimeout(() => {
-      context.dispatch('logout');
+      context.dispatch('autoLogout');
     }, expirationTime);
 
     if (token && userId) {
@@ -94,5 +94,9 @@ export default {
         userId: userId,
       });
     }
+  },
+  autoLogout(context) {
+    context.dispatch('logout');
+    context.commit('setAutoLogout');
   },
 };

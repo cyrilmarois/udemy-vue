@@ -4,4 +4,7 @@ export default {
     state.userId = payload.userId;
     state.registered = payload?.registered || false;
   },
+  setAutoLogout(state) {
+    state.didAutoLogout = true;
+  },
 };
