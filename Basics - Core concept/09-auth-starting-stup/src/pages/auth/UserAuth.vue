@@ -1,21 +1,29 @@
 <template>
-  <base-card>
-    <form @submit.prevent="submitForm">
-      <div class="form-control">
-        <label for="email">E-mail</label>
-        <input type="email" id="email" v-model.trim="email" />
-      </div>
-      <div class="form-control">
-        <label for="password">Password</label>
-        <input type="password" id="password" v-model.trim="password" />
-      </div>
-      <p v-if="isFormInvalid">Invalid email or password</p>
-      <base-button type="submit">{{ switchLoginLabel }}</base-button>
-      <base-button type="button" mode="flat" @click="switchAuthMode">{{
-        switchSignupLabel
-      }}</base-button>
-    </form>
-  </base-card>
+  <div>
+    <base-dialog :show="!!error" title="An error occurred" @close="closeModal">
+      <p>{{ error }}</p>
+    </base-dialog>
+    <base-dialog :show="isLoading" title="Authenticating..." fixed>
+      <base-spinner />
+    </base-dialog>
+    <base-card>
+      <form @submit.prevent="submitForm">
+        <div class="form-control">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" v-model.trim="email" />
+        </div>
+        <div class="form-control">
+          <label for="password">Password</label>
+          <input type="password" id="password" v-model.trim="password" />
+        </div>
+        <p v-if="isFormInvalid">Invalid email or password</p>
+        <base-button type="submit">{{ switchLoginLabel }}</base-button>
+        <base-button type="button" mode="flat" @click="switchAuthMode">{{
+          switchSignupLabel
+        }}</base-button>
+      </form>
+    </base-card>
+  </div>
 </template>
 <script>
 export default {
@@ -25,6 +33,8 @@ export default {
       password: '',
       isFormInvalid: false,
       mode: 'login',
+      isLoading: false,
+      error: null,
     };
   },
   computed: {
@@ -51,7 +61,7 @@ export default {
         this.mode = 'login';
       }
     },
-    submitForm() {
+    async submitForm() {
       this.isFormInvalid = false;
       if (
         this.email === '' ||
@@ -61,16 +71,29 @@ export default {
         this.isFormInvalid = true;
         return;
       }
+      this.isLoading = true;
       // authenticate user
       console.log({ mode: this.mode });
-      if (this.mode === 'login') {
-        //.. log
-      } else {
-        this.$store.dispatch('signup', {
-          email: this.email,
-          password: this.password,
-        });
+      try {
+        if (this.mode === 'login') {
+          //.. log
+        } else {
+          await this.$store.dispatch('signup', {
+            email: this.email,
+            password: this.password,
+          });
+        }
+      } catch (err) {
+        console.log({ err });
+        this.error =
+          err.message || 'Authentication failed: Invalid username or password';
       }
+
+      this.isLoading = false;
+    },
+    closeModal() {
+      this.error = null;
+      console.log({ err: this.error, tErr: !!this.error });
     },
   },
 };
