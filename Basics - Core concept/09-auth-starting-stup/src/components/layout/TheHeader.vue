@@ -35,6 +35,9 @@ export default {
       this.$router.replace('/coaches');
     },
   },
+  created() {
+    this.$store.dispatch('autoLogin');
+  },
 };
 </script>
 

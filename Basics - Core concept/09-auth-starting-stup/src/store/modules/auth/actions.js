@@ -37,6 +37,9 @@ export default {
       throw error;
     }
 
+    localStorage.setItem('token', responseData.idToken);
+    localStorage.setItem('userId', responseData.localId);
+
     context.commit('setUser', {
       token: responseData.idToken,
       userId: responseData.localId,
@@ -51,5 +54,16 @@ export default {
       tokenExpiration: null,
       registered: false,
     });
+  },
+  autoLogin(context) {
+    // check if user is authenticated
+    const token = localStorage.getItem('token'););
+    if (token && userId) {
+      context.commit('setUser', {
+        token: token,
+        userId: userId,
+        tokenExpiration: null,
+      });
+    }
   },
 };
