@@ -1,7 +1,6 @@
 export default {
   login() {},
   async signup(context, payload) {
-    console.log({ payload });
     const response = await fetch(
       'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyD_7nMbeNJz4tG8FHtTqqzA_akLhFRMQc4',
       {
@@ -15,10 +14,10 @@ export default {
     );
 
     const responseData = await response.json();
-    console.log({ responseData });
-
-    if (!response.status !== 200) {
-      const error = new Error(responseData.message || 'Authentication failed');
+    if (response.status !== 200) {
+      const error = new Error(
+        responseData.error.errors[0].message || 'Authentication failed'
+      );
       throw error;
     }
 
