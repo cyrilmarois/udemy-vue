@@ -31,7 +31,6 @@ export default {
     });
 
     const responseData = await response.json();
-    console.log({ responseData });
     if (response.status !== 200) {
       const error = new Error(
         responseData.error.errors[0].message || 'Authentication failed'
@@ -39,10 +38,8 @@ export default {
       throw error;
     }
 
-    // const convertExpirationIn = +responseData.expiresIn * 1000;
-    const convertExpirationIn = 5000;
+    const convertExpirationIn = +responseData.expiresIn * 1000;
     const expirationTime = new Date().getTime() + convertExpirationIn;
-    console.log({ expirationTime });
     timer = setTimeout(() => {
       context.dispatch('autoLogout');
     }, convertExpirationIn);
@@ -57,7 +54,6 @@ export default {
     });
   },
   logout(context) {
-    console.log({ context });
     localStorage.removeItem('token');
     localStorage.removeItem('userId');
     localStorage.removeItem('tokenExpiration');

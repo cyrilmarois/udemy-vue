@@ -88,7 +88,6 @@ export default {
         const redirectUrl = '/' + (this.$route.query.redirect || 'coaches');
         this.$router.replace(redirectUrl);
       } catch (err) {
-        console.log({ err });
         this.error =
           err.message || 'Authentication failed: Invalid username or password';
       }
@@ -97,7 +96,6 @@ export default {
     },
     closeModal() {
       this.error = null;
-      console.log({ err: this.error, tErr: !!this.error });
     },
   },
 };

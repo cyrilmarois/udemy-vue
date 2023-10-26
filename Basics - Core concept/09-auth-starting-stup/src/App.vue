@@ -36,7 +36,6 @@ export default {
   },
   watch: {
     didAutoLogout(currentValue, oldValue) {
-      console.log({ currentValue, oldValue });
       if (currentValue && currentValue !== oldValue) {
         this.$router.replace('/coaches');
       }
