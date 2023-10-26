@@ -84,7 +84,9 @@ export default {
         } else {
           await this.$store.dispatch('signup', payload);
         }
-        this.$router.replace('/coaches');
+
+        const redirectUrl = '/' + (this.$route.query.redirect || 'coaches');
+        this.$router.replace(redirectUrl);
       } catch (err) {
         console.log({ err });
         this.error =
