@@ -72,16 +72,17 @@ export default {
         return;
       }
       this.isLoading = true;
-      // authenticate user
-      console.log({ mode: this.mode });
+      const payload = {
+        email: this.email,
+        password: this.password,
+      };
+
       try {
+        // authenticate user
         if (this.mode === 'login') {
-          //.. log
+          await this.$store.dispatch('login', payload);
         } else {
-          await this.$store.dispatch('signup', {
-            email: this.email,
-            password: this.password,
-          });
+          await this.$store.dispatch('signup', payload);
         }
       } catch (err) {
         console.log({ err });
