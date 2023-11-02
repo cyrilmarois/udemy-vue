@@ -1,8 +1,11 @@
 export default {
-  removeProductFromCart(context, payload) {
+  removeProduct(context, payload) {
     context.commit('removeProductFromCart', payload);
   },
-  addProductToCart(context, payload) {
-    context.commit('addProductToCart', payload);
+  addProduct(context, payload) {
+    const prodId = payload.id;
+    const products = context.rootGetters['prod/getProducts'];
+    const product = products.find((prod) => prod.id === prodId);
+    context.commit('addProductToCart', product);
   },
 };

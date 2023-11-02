@@ -1,8 +1,5 @@
 export default {
   removeProductFromCart(state, payload) {
-    // if (!payload.prodId) {
-    //   throw new Error('Missing prodId in payload');
-    // }
     const productInCartIndex = state.cart.items.findIndex(
       (cartItem) => cartItem.productId === payload.prodId
     );
@@ -13,23 +10,24 @@ export default {
   },
 
   addProductToCart(state, payload) {
+    const productData = payload;
     const productInCartIndex = state.cart.items.findIndex(
-      (ci) => ci.productId === payload.id
+      (ci) => ci.productId === productData.id
     );
 
     if (productInCartIndex >= 0) {
       state.cart.items[productInCartIndex].qty++;
     } else {
       const newItem = {
-        productId: payload.id,
-        title: payload.title,
-        image: payload.image,
-        price: payload.price,
+        productId: productData.id,
+        title: productData.title,
+        image: productData.image,
+        price: productData.price,
         qty: 1,
       };
       state.cart.items.push(newItem);
     }
     state.cart.qty++;
-    state.cart.total += payload.price;
+    state.cart.total += productData.price;
   },
 };

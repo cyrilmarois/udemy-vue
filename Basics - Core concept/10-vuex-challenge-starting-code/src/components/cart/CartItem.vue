@@ -31,7 +31,7 @@ export default {
   },
   methods: {
     remove() {
-      this.$store.dispatch('cart/removeProductFromCart', {
+      this.$store.dispatch('cart/removeProduct', {
         prodId: this.prodId,
       });
     },
