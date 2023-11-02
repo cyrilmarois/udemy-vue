@@ -14,6 +14,9 @@ const store = createStore({
     addOne(state) {
       state.counter++;
     },
+    addTen(state, payload) {
+      state.counter += payload.value;
+    },
   },
 });
 app.use(store);
