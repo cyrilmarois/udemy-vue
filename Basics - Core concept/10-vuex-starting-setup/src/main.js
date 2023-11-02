@@ -21,7 +21,7 @@ const counterModule = {
       console.log({ context });
       setTimeout(() => {
         context.commit('addOne');
-      }, 5000);
+      }, 2000);
     },
     increment10(context, payload) {
       context.commit('addTen', payload);
