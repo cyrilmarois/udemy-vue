@@ -6,7 +6,7 @@
 export default {
   methods: {
     addTen() {
-      this.$store.commit('addTen', { value: 10 });
+      this.$store.dispatch('increment10', { value: 10 });
     },
   },
 };
