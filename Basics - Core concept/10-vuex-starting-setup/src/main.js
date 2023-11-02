@@ -10,6 +10,11 @@ const store = createStore({
       counter: 0,
     };
   },
+  mutations: {
+    addOne(state) {
+      state.counter++;
+    },
+  },
 });
 app.use(store);
 
