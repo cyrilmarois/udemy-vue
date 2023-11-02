@@ -4,12 +4,9 @@ import App from './App.vue';
 
 const app = createApp(App);
 
-const store = createStore({
+const counterModule = {
   state() {
-    return {
-      counter: 0,
-      isAuthenticated: false,
-    };
+    return { counter: 0 };
   },
   mutations: {
     addOne(state) {
@@ -17,12 +14,6 @@ const store = createStore({
     },
     addTen(state, payload) {
       state.counter += payload.value;
-    },
-    setIsAuthenticated(state, payload) {
-      console.log({
-        MAINJS__MUTATIONS_setIsAuthenticated: payload,
-      });
-      state.isAuthenticated = payload.isAuthenticated;
     },
   },
   actions: {
@@ -34,12 +25,6 @@ const store = createStore({
     },
     increment10(context, payload) {
       context.commit('addTen', payload);
-    },
-    setIsAuthenticated(context, payload) {
-      console.log({
-        MAINJS__ACTIONS_isAuthenticated: payload,
-      });
-      context.commit('setIsAuthenticated', payload);
     },
   },
   getters: {
@@ -56,6 +41,35 @@ const store = createStore({
       }
       return finalCounter;
     },
+  },
+};
+
+const store = createStore({
+  modules: {
+    number: counterModule,
+  },
+  state() {
+    return {
+      isAuthenticated: false,
+    };
+  },
+  mutations: {
+    setIsAuthenticated(state, payload) {
+      console.log({
+        MAINJS__MUTATIONS_setIsAuthenticated: payload,
+      });
+      state.isAuthenticated = payload.isAuthenticated;
+    },
+  },
+  actions: {
+    setIsAuthenticated(context, payload) {
+      console.log({
+        MAINJS__ACTIONS_isAuthenticated: payload,
+      });
+      context.commit('setIsAuthenticated', payload);
+    },
+  },
+  getters: {
     isAuthenticated(state) {
       return state.isAuthenticated;
     },
