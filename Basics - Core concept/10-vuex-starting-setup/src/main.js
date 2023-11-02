@@ -26,9 +26,7 @@ const store = createStore({
       }, 5000);
     },
     increment10(context, payload) {
-      setTimeout(function () {
-        context.commit('addTen', payload);
-      }, 5000);
+      context.commit('addTen', payload);
     },
   },
   getters: {
