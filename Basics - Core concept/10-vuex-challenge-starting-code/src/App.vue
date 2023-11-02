@@ -20,7 +20,7 @@ export default {
       this.$store.dispatch('login', { isAuthenticated: true });
     },
     logout() {
-      this.$store.dispatch('login', { isAuthenticated: false });
+      this.$store.dispatch('logout', { isAuthenticated: false });
     },
   },
 };

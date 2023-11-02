@@ -31,7 +31,9 @@ export default {
   },
   methods: {
     remove() {
-      this.$store.dispatch('removeProductFromCart', { prodId: this.prodId });
+      this.$store.dispatch('cart/removeProductFromCart', {
+        prodId: this.prodId,
+      });
     },
   },
 };

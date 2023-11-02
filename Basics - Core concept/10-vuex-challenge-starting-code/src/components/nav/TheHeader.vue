@@ -31,7 +31,7 @@ export default {
       return this.$store.getters.isAuthenticated;
     },
     cart() {
-      return this.$store.getters.getCart;
+      return this.$store.getters['cart/getCart'];
     },
   },
 };

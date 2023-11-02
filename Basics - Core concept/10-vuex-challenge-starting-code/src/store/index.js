@@ -6,7 +6,7 @@ import rootActions from './actions.js';
 import rootGetters from './getters.js';
 
 const store = createStore({
-  modules: { CartModule, ProductModule },
+  modules: { cart: CartModule, prod: ProductModule },
   state() {
     return {
       isAuthenticated: true,

@@ -20,7 +20,7 @@ import ProductItem from '../components/products/ProductItem.vue';
 export default {
   computed: {
     products() {
-      return this.$store.getters.getProducts;
+      return this.$store.getters['prod/getProducts'];
     },
   },
   components: {
