@@ -34,6 +34,14 @@ export default {
       return this.$store.getters['cart/getCart'];
     },
   },
+  methods: {
+    login() {
+      return this.$store.dispatch('login');
+    },
+    logout() {
+      return this.$store.dispatch('logout');
+    },
+  },
 };
 </script>
 
