@@ -15,16 +15,8 @@ export default {
       isLoggedIn: this.$store.getters.isAuthenticated,
     };
   },
-  provide() {
-    return {
-      // isLoggedIn: this.isLoggedIn,
-      // login: this.login,
-      // logout: this.logout,
-    };
-  },
   methods: {
     login() {
-      // this.isLoggedIn = true;
       this.$store.dispatch('login', { isAuthenticated: true });
     },
     logout() {

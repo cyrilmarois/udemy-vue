@@ -22,7 +22,6 @@
 import CartItem from '../components/cart/CartItem.vue';
 
 export default {
-  // inject: ['cart'],
   components: {
     CartItem,
   },
@@ -31,7 +30,7 @@ export default {
       return this.$store.getters.getCart;
     },
     cartTotal() {
-      return this.cart.total.toFixed(2);
+      return this.$store.getters.getCartTotal;
     },
   },
 };
