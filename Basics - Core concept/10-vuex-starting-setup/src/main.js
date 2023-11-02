@@ -8,6 +8,7 @@ const store = createStore({
   state() {
     return {
       counter: 0,
+      isAuthenticated: false,
     };
   },
   mutations: {
@@ -16,6 +17,12 @@ const store = createStore({
     },
     addTen(state, payload) {
       state.counter += payload.value;
+    },
+    setIsAuthenticated(state, payload) {
+      console.log({
+        MAINJS__MUTATIONS_setIsAuthenticated: payload,
+      });
+      state.isAuthenticated = payload.isAuthenticated;
     },
   },
   actions: {
@@ -27,6 +34,12 @@ const store = createStore({
     },
     increment10(context, payload) {
       context.commit('addTen', payload);
+    },
+    setIsAuthenticated(context, payload) {
+      console.log({
+        MAINJS__ACTIONS_isAuthenticated: payload,
+      });
+      context.commit('setIsAuthenticated', payload);
     },
   },
   getters: {
@@ -42,6 +55,9 @@ const store = createStore({
         return 100;
       }
       return finalCounter;
+    },
+    isAuthenticated(state) {
+      return state.isAuthenticated;
     },
   },
 });
