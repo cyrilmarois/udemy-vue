@@ -11,6 +11,7 @@ const app = createApp(App);
 const router = createRouter({
   history: createWebHistory(),
   routes: [
+    { path: '/', redirect: '/teams' },
     {
       path: '/teams',
       component: TeamsList,
