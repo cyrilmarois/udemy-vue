@@ -37,6 +37,11 @@ const router = createRouter({
         default: UsersList,
         footer: UsersFooter,
       },
+      beforeEnter: (to, from, next) => {
+        console.log('USER LOCAL ROUTER BEFORE ENTER');
+        console.log({ to, from });
+        next();
+      },
     },
     { path: '/:notFound(.*)', component: TheNotFound },
   ],
@@ -47,6 +52,19 @@ const router = createRouter({
     }
     return { left: 0, top: 0 };
   },
+});
+
+router.beforeEach((to, from, next) => {
+  // to and from are both route objects. must call `next`.
+  console.log('GLOBAL ROUTER BEFORE EACH');
+  console.log({ to, from });
+  next();
+});
+router.afterEach((to, from) => {
+  // to and from are both route objects.
+  console.log('GLOBAL ROUTER AFTER EACH');
+  console.log({ to, from });
+  // example logs some data
 });
 
 app.use(router);
