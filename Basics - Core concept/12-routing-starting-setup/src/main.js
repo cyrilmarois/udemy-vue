@@ -1,6 +1,7 @@
 import { createApp } from 'vue';
 import { createRouter, createWebHistory } from 'vue-router';
 
+import TheNotFound from './components/TheNotFound.vue';
 import TeamMembers from './components/teams/TeamMembers.vue';
 import TeamsList from './components/teams/TeamsList.vue';
 import UsersList from './components/users/UsersList.vue';
@@ -21,6 +22,7 @@ const router = createRouter({
       path: '/users',
       component: UsersList,
     },
+    { path: '/:notFound(.*)', component: TheNotFound },
   ],
   linkActiveClass: 'active',
 });
