@@ -140,6 +140,7 @@ export default {
         inputConfirm: this.inputConfirm,
         inputRating: this.inputRating,
       });
+      this.reset();
     },
     checkInputName() {
       if (this.inputName === '') {
@@ -147,6 +148,15 @@ export default {
       } else {
         this.inputNameValidity = 'valid';
       }
+    },
+    reset() {
+      this.inputName = '';
+      this.inputAge = null;
+      this.inputReferrer = 'wom';
+      this.inputInterests = [];
+      this.inputLearning = null;
+      this.inputConfirm = false;
+      this.inputRating = null;
     },
   },
 };
