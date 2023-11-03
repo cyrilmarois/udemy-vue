@@ -1,3 +1,7 @@
+### Version 0.7.0
+
+Vuex playground
+
 ### Version 0.6.0
 
 Discover authentication
