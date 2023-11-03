@@ -16,11 +16,23 @@ export default {
   components: {
     UserItem,
   },
+  data() {
+    return { hasPendingModification: true };
+  },
   inject: ['users'],
   beforeRouteEnter(to, from, next) {
     console.log('USERS-LIST CMP BEFORE ROUTE ENTER');
     console.log({ to, from });
     next();
+  },
+  beforeRouteLeave(to, from, next) {
+    console.log('USERS-LIST CMP BEFORE ROUTE LEAVE');
+    if (!this.hasPendingModification) {
+      return next();
+    } else {
+      const canLeavePage = confirm('R U SURE?');
+      next(canLeavePage);
+    }
   },
 };
 </script>
