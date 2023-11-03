@@ -94,6 +94,9 @@
         <label for="how-other">Other</label>
       </div>
     </div>
+    <div class="form-label">
+      <RatingControl v-model="inputRating" />
+    </div>
     <div class="form-control">
       <input
         type="checkbox"
@@ -110,7 +113,10 @@
 </template>
 
 <script>
+import RatingControl from './RatingControl.vue';
+
 export default {
+  components: { RatingControl },
   data() {
     return {
       inputName: '',
@@ -120,6 +126,7 @@ export default {
       inputLearning: null,
       inputConfirm: false,
       inputNameValidity: 'pending',
+      inputRating: null,
     };
   },
   methods: {
@@ -131,6 +138,7 @@ export default {
         inputInterests: this.inputInterests,
         inputLearning: this.inputLearning,
         inputConfirm: this.inputConfirm,
+        inputRating: this.inputRating,
       });
     },
     checkInputName() {
