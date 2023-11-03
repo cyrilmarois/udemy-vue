@@ -22,6 +22,7 @@ const router = createRouter({
         default: TeamsList,
         footer: TeamsFooter,
       },
+      meta: { needsAuth: true },
       children: [
         {
           name: 'team-members',
@@ -58,6 +59,9 @@ router.beforeEach((to, from, next) => {
   // to and from are both route objects. must call `next`.
   console.log('GLOBAL ROUTER BEFORE EACH');
   console.log({ to, from });
+  if (to.meta.needsAuth) {
+    console.log('NEEDS AUTH!');
+  }
   next();
 });
 router.afterEach((to, from) => {
