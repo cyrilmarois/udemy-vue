@@ -1,13 +1,20 @@
 <template>
   <form @submit.prevent="submit">
-    <div class="form-control">
+    <div
+      class="form-control"
+      :class="{ error: inputNameValidity === 'invalid' }"
+    >
       <label for="user-name">Your Name</label>
       <input
         id="user-name"
         name="user-name"
         type="text"
         v-model.trim="inputName"
+        @blur="checkInputName"
       />
+      <p class="error" v-if="inputNameValidity === 'invalid'">
+        Just put a fuckin name
+      </p>
     </div>
     <div class="form-control">
       <label for="age">Your Age (Years)</label>
@@ -112,6 +119,7 @@ export default {
       inputInterests: [],
       inputLearning: null,
       inputConfirm: false,
+      inputNameValidity: 'pending',
     };
   },
   methods: {
@@ -124,6 +132,13 @@ export default {
         inputLearning: this.inputLearning,
         inputConfirm: this.inputConfirm,
       });
+    },
+    checkInputName() {
+      if (this.inputName === '') {
+        this.inputNameValidity = 'invalid';
+      } else {
+        this.inputNameValidity = 'valid';
+      }
     },
   },
 };
@@ -141,6 +156,13 @@ form {
 
 .form-control {
   margin: 0.5rem 0;
+}
+
+.form-control.error input {
+  border-color: red;
+}
+.error {
+  color: red;
 }
 
 label {
