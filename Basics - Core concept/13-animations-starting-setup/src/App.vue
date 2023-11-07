@@ -1,5 +1,14 @@
 <template>
   <div class="container">
+    <router-view v-slot="slotProps">
+      <keep-alive>
+        <transition name="router" mode="out-in">
+          <component :is="slotProps.Component"></component>
+        </transition>
+      </keep-alive>
+    </router-view>
+  </div>
+  <div class="container">
     <UsersLists />
   </div>
   <div class="container">
@@ -187,6 +196,16 @@ button:active {
 }
 .show-user-enter-to,
 .show-user-leave-from {
+  opacity: 1;
+}
+
+.router-enter-from {
+  opacity: 0;
+}
+.router-enter-active {
+  transition: opacity 2000ms ease-in;
+}
+.router-enter-to {
   opacity: 1;
 }
 
