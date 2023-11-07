@@ -3,6 +3,13 @@
     <div class="block" :class="{ animate: animateBlock }"></div>
     <button @click="animate">Animate</button>
   </div>
+  <div class="container">
+    <transition>
+      <p v-if="isPVisible">This is only sometimes visible...</p>
+    </transition>
+    <button type="button" @click="toggleParagraph">Toggle Paragraph</button>
+  </div>
+
   <base-modal @close="hideDialog" v-if="dialogIsVisible">
     <p>This is a test dialog!</p>
     <button @click="hideDialog">Close it!</button>
@@ -15,7 +22,11 @@
 <script>
 export default {
   data() {
-    return { animateBlock: false, dialogIsVisible: false };
+    return {
+      animateBlock: false,
+      isPVisible: false,
+      dialogIsVisible: false,
+    };
   },
   methods: {
     showDialog() {
@@ -26,6 +37,9 @@ export default {
     },
     animate() {
       this.animateBlock = true;
+    },
+    toggleParagraph() {
+      this.isPVisible = !this.isPVisible;
     },
   },
 };
@@ -78,6 +92,35 @@ button:active {
   /* transform: translateX(-150px); */
   animation: smurf 500ms ease-out forwards;
 }
+
+.v-enter-from {
+  opacity: 0;
+  transform: translateY(-30px);
+}
+
+.v-enter-active {
+  transition: all 500ms ease-out;
+}
+
+.v-enter-to {
+  opacity: 1;
+  transition: translateY(0);
+}
+
+.v-leave-from {
+  opacity: 1;
+  transition: translateY(0);
+}
+
+.v-leave-active {
+  transition: all 500ms ease-in;
+}
+
+.v-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
 @keyframes smurf {
   0% {
     transform: translateX(0) scale(1);
