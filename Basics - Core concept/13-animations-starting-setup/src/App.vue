@@ -13,6 +13,8 @@
       @after-enter="afterEnter"
       @leave="leave"
       @after-leave="afterLEave"
+      @enter-cancelled="enterCancelled"
+      @leave-cancelled="leaveCancelled"
     >
       <p v-if="isPVisible">This is only sometimes visible...</p>
     </transition>
@@ -42,6 +44,8 @@ export default {
       isPVisible: false,
       dialogIsVisible: false,
       canShowUsers: false,
+      enterInterval: null,
+      leaveInterval: null,
     };
   },
   methods: {
@@ -63,20 +67,48 @@ export default {
     hideUsers() {
       this.canShowUsers = false;
     },
+    enterCancelled(el) {
+      console.log('ENTER_CANCELLED', el);
+      clearInterval(this.enterInterval);
+    },
+    leaveCancelled(el) {
+      console.log('LEAVE_CANCELLED', el);
+      clearInterval(this.leaveInterval);
+    },
     beforeEnter(el) {
       console.log('BEFORE_ENTER', el);
+      el.style.opacity = 0;
+    },
+    enter(el, done) {
+      console.log('ENTER', el);
+      let round = 1;
+      this.enterInterval = setInterval(() => {
+        el.style.opacity = round * 0.01;
+        round++;
+        if (round === 100) {
+          clearInterval(this.enterInterval);
+          done();
+        }
+      }, 50);
     },
     afterEnter(el) {
       console.log('POST_ENTER', el);
     },
-    enter(el) {
-      console.log('ENTER', el);
-    },
     beforeLeave(el) {
       console.log('BEFORE_LEAVE', el);
+      el.style.opacity = 1;
     },
-    leave(el) {
+    leave(el, done) {
       console.log('LEAVE', el);
+      let round = 1;
+      this.leaveInterval = setInterval(() => {
+        el.style.opacity = 1 - round * 0.01;
+        round++;
+        if (round === 100) {
+          clearInterval(this.leaveInterval);
+          done();
+        }
+      }, 50);
     },
     afterLEave(el) {
       console.log('POST_LEAVE', el);
@@ -140,7 +172,7 @@ button:active {
 
 .para-enter-active {
   /* transition: all 500ms ease-out; */
-  animation: smurf 2000ms ease-out;
+  /* animation: smurf 2000ms ease-out; */
 }
 
 .para-enter-to {
@@ -155,7 +187,7 @@ button:active {
 
 .para-leave-active {
   /* transition: all 500ms ease-in; */
-  animation: smurf 2000ms ease-out;
+  /* animation: smurf 2000ms ease-out; */
 }
 
 .para-leave-to {
