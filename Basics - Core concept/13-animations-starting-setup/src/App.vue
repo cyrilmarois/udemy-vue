@@ -6,7 +6,7 @@
   <div class="container">
     <!-- <transition name="para" enter-to-class="..." enter-active-class="..."> -->
     <transition
-      name="para"
+      css="false"
       @before-enter="beforeEnter"
       @enter="enter"
       @before-leave="beforeLeave"
@@ -165,47 +165,8 @@ button:active {
   animation: smurf 500ms ease-out forwards;
 }
 
-.para-enter-from {
-  /* opacity: 0;
-  transform: translateY(-30px); */
-}
-
-.para-enter-active {
-  /* transition: all 500ms ease-out; */
-  /* animation: smurf 2000ms ease-out; */
-}
-
-.para-enter-to {
-  /* opacity: 1;
-  transition: translateY(0); */
-}
-
-.para-leave-from {
-  /* opacity: 1;
-  transition: translateY(0); */
-}
-
-.para-leave-active {
-  /* transition: all 500ms ease-in; */
-  /* animation: smurf 2000ms ease-out; */
-}
-
-.para-leave-to {
-  /* opacity: 0;
-  transform: translateY(30px); */
-}
-.modal-enter-from {
-}
 .modal-enter-active {
   animation: modal 500ms ease-in;
-}
-.modal-enter-to {
-}
-.modal-leave-from {
-}
-.modal-leave-active {
-}
-.modal-leave-to {
 }
 
 .show-user-enter-from,
