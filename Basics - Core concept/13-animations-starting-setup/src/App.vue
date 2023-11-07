@@ -10,6 +10,12 @@
     </transition>
     <button type="button" @click="toggleParagraph">Toggle Paragraph</button>
   </div>
+  <div class="container">
+    <transition name="show-user" mode="out-in">
+      <button @click="showUsers" v-if="!canShowUsers">Show Users</button>
+      <button @click="hideUsers" v-else>Hide Users</button>
+    </transition>
+  </div>
   <base-modal @close="hideDialog" :openDialog="dialogIsVisible">
     <p>This is a test dialog!</p>
     <button @click="hideDialog">Close it!</button>
@@ -27,6 +33,7 @@ export default {
       animateBlock: false,
       isPVisible: false,
       dialogIsVisible: false,
+      canShowUsers: false,
     };
   },
   methods: {
@@ -41,6 +48,12 @@ export default {
     },
     toggleParagraph() {
       this.isPVisible = !this.isPVisible;
+    },
+    showUsers() {
+      this.canShowUsers = true;
+    },
+    hideUsers() {
+      this.canShowUsers = false;
     },
   },
 };
@@ -135,6 +148,21 @@ button:active {
 .modal-leave-active {
 }
 .modal-leave-to {
+}
+
+.show-user-enter-from,
+.show-user-leave-to {
+  opacity: 0;
+}
+.show-user-enter-active {
+  transition: opacity 1000ms ease-out;
+}
+.show-user-leave-active {
+  transition: opacity 1000ms ease-in;
+}
+.show-user-enter-to,
+.show-user-leave-from {
+  opacity: 1;
 }
 
 @keyframes smurf {
