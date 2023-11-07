@@ -51,6 +51,8 @@
 </template>
 
 <script>
+const url = process.env.VUE_APP_API_FIREBASE;
+
 // import axios from 'axios';
 
 export default {
@@ -75,20 +77,16 @@ export default {
       //   userName: this.enteredName,
       //   rating: this.chosenRating,
       // });
-
-      fetch(
-        'https://vue-htt-demo-c141a-default-rtdb.europe-west1.firebasedatabase.app/surveys.json',
-        {
-          method: 'POST',
-          headers: {
-            'Content-type': 'application/json',
-          },
-          body: {
-            name: this.enteredName,
-            rating: this.chosenRating,
-          },
-        }
-      )
+      fetch(`${url}/surveys.json`, {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: {
+          name: this.enteredName,
+          rating: this.chosenRating,
+        },
+      })
         .then((res) => {
           if (res.response !== 200) {
             throw new Error('Internal error...');

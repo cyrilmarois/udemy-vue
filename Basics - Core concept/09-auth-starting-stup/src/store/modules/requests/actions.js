@@ -1,3 +1,5 @@
+const url = process.env.VUE_APP_API_FIREBASE;
+
 export default {
   async contactCoach(context, payload) {
     const newRequest = {
@@ -5,14 +7,10 @@ export default {
       message: payload.message,
     };
     const coachId = '-NhciHNA-kMr-4QQIw3l';
-    // const response = await fetch(`https://vue-http-demo-85e9e.firebaseio.com/requests/${payload.coachId}.json`, {
-    const response = await fetch(
-      `https://vue-htt-demo-c141a-default-rtdb.europe-west1.firebasedatabase.app/requests/${coachId}.json`,
-      {
-        method: 'POST',
-        body: JSON.stringify(newRequest),
-      }
-    );
+    const response = await fetch(`${url}/requests/${coachId}.json`, {
+      method: 'POST',
+      body: JSON.stringify(newRequest),
+    });
 
     const responseData = await response.json();
 
