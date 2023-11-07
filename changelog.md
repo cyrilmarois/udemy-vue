@@ -1,3 +1,9 @@
+### Version 0.8.0
+
+- Form playground
+- Router playground
+- Animations playground
+
 ### Version 0.7.0
 
 Vuex playground
