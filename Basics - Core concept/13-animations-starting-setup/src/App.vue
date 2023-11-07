@@ -5,7 +5,15 @@
   </div>
   <div class="container">
     <!-- <transition name="para" enter-to-class="..." enter-active-class="..."> -->
-    <transition name="para">
+    <transition
+      name="para"
+      @before-enter="beforeEnter"
+      @enter="enter"
+      @before-leave="beforeLeave"
+      @after-enter="afterEnter"
+      @leave="leave"
+      @after-leave="afterLEave"
+    >
       <p v-if="isPVisible">This is only sometimes visible...</p>
     </transition>
     <button type="button" @click="toggleParagraph">Toggle Paragraph</button>
@@ -54,6 +62,24 @@ export default {
     },
     hideUsers() {
       this.canShowUsers = false;
+    },
+    beforeEnter(el) {
+      console.log('BEFORE_ENTER', el);
+    },
+    afterEnter(el) {
+      console.log('POST_ENTER', el);
+    },
+    enter(el) {
+      console.log('ENTER', el);
+    },
+    beforeLeave(el) {
+      console.log('BEFORE_LEAVE', el);
+    },
+    leave(el) {
+      console.log('LEAVE', el);
+    },
+    afterLEave(el) {
+      console.log('POST_LEAVE', el);
     },
   },
 };
@@ -114,7 +140,7 @@ button:active {
 
 .para-enter-active {
   /* transition: all 500ms ease-out; */
-  animation: smurf 500ms ease-out;
+  animation: smurf 2000ms ease-out;
 }
 
 .para-enter-to {
@@ -129,7 +155,7 @@ button:active {
 
 .para-leave-active {
   /* transition: all 500ms ease-in; */
-  animation: smurf 500ms ease-out;
+  animation: smurf 2000ms ease-out;
 }
 
 .para-leave-to {
