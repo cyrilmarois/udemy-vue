@@ -94,31 +94,33 @@ button:active {
 }
 
 .v-enter-from {
-  opacity: 0;
-  transform: translateY(-30px);
+  /* opacity: 0;
+  transform: translateY(-30px); */
 }
 
 .v-enter-active {
-  transition: all 500ms ease-out;
+  /* transition: all 500ms ease-out; */
+  animation: smurf 500ms ease-out;
 }
 
 .v-enter-to {
-  opacity: 1;
-  transition: translateY(0);
+  /* opacity: 1;
+  transition: translateY(0); */
 }
 
 .v-leave-from {
-  opacity: 1;
-  transition: translateY(0);
+  /* opacity: 1;
+  transition: translateY(0); */
 }
 
 .v-leave-active {
-  transition: all 500ms ease-in;
+  /* transition: all 500ms ease-in; */
+  animation: smurf 500ms ease-out;
 }
 
 .v-leave-to {
-  opacity: 0;
-  transform: translateY(30px);
+  /* opacity: 0;
+  transform: translateY(30px); */
 }
 
 @keyframes smurf {
