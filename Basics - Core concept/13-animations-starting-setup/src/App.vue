@@ -4,7 +4,7 @@
     <button @click="animate">Animate</button>
   </div>
   <div class="container">
-    <transition>
+    <transition name="para">
       <p v-if="isPVisible">This is only sometimes visible...</p>
     </transition>
     <button type="button" @click="toggleParagraph">Toggle Paragraph</button>
@@ -93,32 +93,32 @@ button:active {
   animation: smurf 500ms ease-out forwards;
 }
 
-.v-enter-from {
+.para-enter-from {
   /* opacity: 0;
   transform: translateY(-30px); */
 }
 
-.v-enter-active {
+.para-enter-active {
   /* transition: all 500ms ease-out; */
   animation: smurf 500ms ease-out;
 }
 
-.v-enter-to {
+.para-enter-to {
   /* opacity: 1;
   transition: translateY(0); */
 }
 
-.v-leave-from {
+.para-leave-from {
   /* opacity: 1;
   transition: translateY(0); */
 }
 
-.v-leave-active {
+.para-leave-active {
   /* transition: all 500ms ease-in; */
   animation: smurf 500ms ease-out;
 }
 
-.v-leave-to {
+.para-leave-to {
   /* opacity: 0;
   transform: translateY(30px); */
 }
