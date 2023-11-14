@@ -14,17 +14,27 @@
       <h3> {{ userB.age }}</h3>
 
       <div>
+
         <button type="button" @click="updateUserB">
           Update user Info
         </button>
       </div>
     </div>
-
+    <div class="card">
+      {{ userInfo }}
+      <div>
+        <input type="text" name="firstName" placeholder="firstName" @input="setFirstName">
+        <input type="text" name="lastName" placeholder="lastName" @input="setLastName">
+      </div>
+    </div>
   </section>
 </template>
 
 <script setup>
-import {ref, reactive} from 'vue'
+import {ref, reactive, computed} from 'vue'
+
+const firstName = ref( null );
+const lastName = ref( null );
 
 const userA = ref( {
   name: 'Max',
@@ -36,6 +46,10 @@ const userB = reactive( {
   age: 36,
 } );
 
+const userInfo = computed( function () {
+  return `${ firstName.value } ${ lastName.value }`;
+} );
+
 function updateUserA() {
   userA.value.name = 'Cyril';
   userA.value.age = 37;
@@ -45,6 +59,16 @@ function updateUserB() {
   userB.age = 37;
 }
 
+function setFirstName( event ) {
+  console.log( {event} )
+  firstName.value = event.target.value;
+  console.log( {firstName} )
+}
+
+function setLastName( event ) {
+  lastName.value = event.target.value;
+  console.log( {lastName} )
+}
 </script >
 
 <style>
