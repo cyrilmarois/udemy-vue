@@ -1,21 +1,30 @@
 <template>
   <section class="container">
-    <div>
+    <div class="card">
       <h2>{{ userA.name }}</h2>
       <h3> {{ userA.age }}</h3>
+      <div>
+        <button type="button" @click="updateUserA">
+          Update user Info
+        </button>
+      </div>
     </div>
-    <div>
+    <div class="card">
       <h2>{{ userB.name }}</h2>
       <h3> {{ userB.age }}</h3>
+
+      <div>
+        <button type="button" @click="updateUserB">
+          Update user Info
+        </button>
+      </div>
     </div>
+
   </section>
 </template>
 
 <script setup>
 import {ref, reactive} from 'vue'
-
-// const userName = ref( 'Maximilian' );
-// const age = ref( 37 );
 
 const userA = ref( {
   name: 'Max',
@@ -27,13 +36,14 @@ const userB = reactive( {
   age: 36,
 } );
 
-setTimeout( () => {
+function updateUserA() {
   userA.value.name = 'Cyril';
   userA.value.age = 37;
-
+}
+function updateUserB() {
   userB.name = 'Lauren';
   userB.age = 37;
-}, 2000 );
+}
 
 </script >
 
@@ -51,6 +61,11 @@ body {
 }
 
 .container {
+  display: flex;
+  justify-content: space-evenly
+}
+
+.card {
   margin: 3rem auto;
   max-width: 30rem;
   border-radius: 12px;
