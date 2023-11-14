@@ -25,16 +25,19 @@
       <div>
         <input type="text" name="firstName" placeholder="firstName" @input="setFirstName">
         <input type="text" name="lastName" placeholder="lastName" @input="setLastName">
+        <input type="text" name="nickName" placeholder="nickName" v-model.trim="nickName">
+
       </div>
     </div>
   </section>
 </template>
 
 <script setup>
-import {ref, reactive, computed} from 'vue'
+import {ref, reactive, computed, watch} from 'vue'
 
 const firstName = ref( null );
 const lastName = ref( null );
+const nickName = ref( null );
 
 const userA = ref( {
   name: 'Max',
@@ -46,8 +49,19 @@ const userB = reactive( {
   age: 36,
 } );
 
+watch( nickName, function ( newValue, oldValue ) {
+  console.log( 'old value :', newValue );
+  console.log( 'new value :', oldValue );
+} );
+watch( [ firstName, lastName, ], function ( newValues, oldValues ) {
+  console.log( 'old value firstName :', oldValues[ 0 ] );
+  console.log( 'new value firstName :', newValues[ 0 ] );
+  console.log( 'old value lastName :', oldValues[ 1 ] );
+  console.log( 'new value lastName :', newValues[ 1 ] );
+} );
+
 const userInfo = computed( function () {
-  return `${ firstName.value } ${ lastName.value }`;
+  return `${ firstName.value } ${ lastName.value } knows as ${ nickName.value }`;
 } );
 
 function updateUserA() {
