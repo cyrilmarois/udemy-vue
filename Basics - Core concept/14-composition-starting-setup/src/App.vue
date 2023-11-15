@@ -1,3 +1,4 @@
+
 <template>
   <section class="container">
     <div class="card">
@@ -24,9 +25,9 @@
       {{ userInfo }}
       <div>
         <input type="text" name="firstName" placeholder="firstName" @input="setFirstName">
-        <input type="text" name="lastName" placeholder="lastName" @input="setLastName">
+        <input type="text" name="lastName" placeholder="lastName" ref="inputLastName">
         <input type="text" name="nickName" placeholder="nickName" v-model.trim="nickName">
-
+        <button @click="setLastName">Set Lastname</button>
       </div>
     </div>
   </section>
@@ -38,6 +39,7 @@ import {ref, reactive, computed, watch} from 'vue'
 const firstName = ref( null );
 const lastName = ref( null );
 const nickName = ref( null );
+const inputLastName = ref( null );
 
 const userA = ref( {
   name: 'Max',
@@ -79,8 +81,8 @@ function setFirstName( event ) {
   console.log( {firstName} )
 }
 
-function setLastName( event ) {
-  lastName.value = event.target.value;
+function setLastName() {
+  lastName.value = inputLastName.value.value;
   console.log( {lastName} )
 }
 </script >
