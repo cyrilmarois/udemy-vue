@@ -5,7 +5,7 @@
   </main>
 </template>
 
-<script>
+<!-- <script>
 import USER_DATA from './dummy-data.js';
 
 import UserList from './components/users/UserList.vue';
@@ -23,20 +23,40 @@ export default {
     };
   },
   methods: {
-    selectUser(uid) {
-      this.selectedUser = this.activeUsers.find((usr) => usr.id === uid);
+    selectUser( uid ) {
+      console.log( {'activeUSers': this.activeUsers} );
+      this.selectedUser = this.activeUsers.find( ( usr ) => usr.id === uid );
     },
   },
 };
+</script> -->
+
+
+<script setup>
+import USER_DATA from './dummy-data.js';
+import UserList from './components/users/UserList.vue';
+import ProjectsList from './components/projects/ProjectsList.vue';
+
+import {ref} from 'vue';
+
+const selectedUser = ref( null );
+const activeUsers = USER_DATA;
+
+function selectUser( uid ) {
+  selectedUser.value = activeUsers.find( ( usr ) => usr.id === uid );
+}
 </script>
+
 
 <style>
 * {
   box-sizing: border-box;
 }
+
 html {
   font-family: sans-serif;
 }
+
 body {
   margin: 0;
 }
@@ -55,6 +75,7 @@ button {
   cursor: pointer;
   margin: 0.5rem 0.5rem 0.5rem 0;
 }
+
 button:hover,
 button:active {
   background-color: #efefff;
