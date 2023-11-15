@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import {computed, inject} from 'vue';
+import {computed, inject, onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, onUnmounted} from 'vue';
 
 export default {
     props: [ 'lastName', 'firstName', 'age' ],
@@ -16,8 +16,27 @@ export default {
         const uName = computed( function () {
             return `${ props.firstName } ${ props.lastName }`;
         } );
-        return {userName: uName, nickName: uNickName}
 
+        onBeforeMount( function () {
+            console.log( 'ON BEFORE MOUNT' );
+        } );
+        onMounted( function () {
+            console.log( 'ON MOUNTED' );
+        } );
+        onBeforeUpdate( function () {
+            console.log( 'ON BEFORE UPDATE' );
+        } );
+        onUpdated( function () {
+            console.log( 'ON UPDATED' );
+        } );
+        onBeforeUnmount( function () {
+            console.log( 'ON BEFORE UNMOUNT' );
+        } );
+        onUnmounted( function () {
+            console.log( 'ON MOUNTED' );
+        } );
+
+        return {userName: uName, nickName: uNickName}
     }
 }
 </script>
