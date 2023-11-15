@@ -2,8 +2,7 @@
 <template>
   <section class="container">
     <div class="card">
-      <h2>{{ userA.name }}</h2>
-      <h3> {{ userA.age }}</h3>
+      <user-data :last-name="lastName" :first-name="firstName" :age="userA.age" />
       <div>
         <button type="button" @click="updateUserA">
           Update user Info
@@ -35,6 +34,7 @@
 
 <script setup>
 import {ref, reactive, computed, watch} from 'vue'
+import UserData from './components/UserData.vue';
 
 const firstName = ref( null );
 const lastName = ref( null );
