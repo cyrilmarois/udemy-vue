@@ -19,33 +19,28 @@
   </section>
 </template>
 
-<script>
-import { ref, inject } from 'vue';
+<script setup>
+import {ref, inject} from 'vue';
+import {useRouter} from 'vue-router';
 
-export default {
-  setup() {
-    const addProduct = inject('addProduct');
+const router = useRouter();
 
-    const enteredTitle = ref('');
-    const enteredPrice = ref(null);
-    const enteredDescription = ref('');
+const addProduct = inject( 'addProduct' );
 
-    function submitForm() {
-      addProduct({
-        title: enteredTitle,
-        description: enteredDescription,
-        price: enteredPrice,
-      });
-    }
+const enteredTitle = ref( '' );
+const enteredPrice = ref( null );
+const enteredDescription = ref( '' );
 
-    return {
-      enteredTitle,
-      enteredPrice,
-      enteredDescription,
-      submitForm,
-    };
-  },
-};
+function submitForm() {
+  addProduct( {
+    title: enteredTitle,
+    description: enteredDescription,
+    price: enteredPrice,
+  } );
+
+  // redirect after product creation
+  router.push( '/products' );
+}
 </script>
 
 <style scoped>

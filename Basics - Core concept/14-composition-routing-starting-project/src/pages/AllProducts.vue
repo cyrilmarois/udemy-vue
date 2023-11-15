@@ -6,22 +6,16 @@
         <h3>{{ product.title }}</h3>
         <h4>${{ product.price }}</h4>
         <p>{{ product.description }}</p>
-        <router-link to="/products/id">View Details</router-link>
+        <router-link :to="`/products/${product.id}`">View Details</router-link>
       </li>
     </ul>
   </section>
 </template>
 
-<script>
-import { inject } from 'vue';
+<script setup>
+import {inject} from 'vue';
 
-export default {
-  setup() {
-    const loadedProducts = inject('products');
-
-    return { products: loadedProducts };
-  },
-};
+const products = inject( 'products' );
 </script>
 
 <style scoped>
@@ -45,7 +39,8 @@ li {
   padding: 1rem;
 }
 
-h3, h4 {
+h3,
+h4 {
   margin: 0.5rem 0;
 }
 </style>
