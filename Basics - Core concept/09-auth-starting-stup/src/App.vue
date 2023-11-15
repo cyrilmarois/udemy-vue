@@ -22,8 +22,9 @@ export default {
   },
   created() {
     this.$store.dispatch('autoLogin');
+    // const url = process.env.VUE_APP_API_FIREBASE;
     // axios.post(
-    //   'https://vue-htt-demo-c141a-default-rtdb.europe-west1.firebasedatabase.app/coaches.json',
+    //   `${url}/coaches.json`,
     //   {
     //     id: 'c2',
     //     firstName: 'Angie',

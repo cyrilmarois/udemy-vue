@@ -25,6 +25,8 @@
 </template>
 
 <script>
+const url = process.env.VUE_APP_API_FIREBASE;
+
 import axios from 'axios';
 import SurveyResult from './SurveyResult.vue';
 
@@ -44,9 +46,7 @@ export default {
       try {
         this.isLoading = true;
         this.error = null;
-        const res = await axios.get(
-          'https://vue-htt-demo-c141a-default-rtdb.europe-west1.firebasedatabase.app/surveys.json'
-        );
+        const res = await axios.get(`${url}/surveys.json`);
         this.isLoading = false;
         this.results = res.data;
       } catch (err) {

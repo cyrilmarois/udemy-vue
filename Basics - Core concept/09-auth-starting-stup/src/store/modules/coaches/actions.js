@@ -1,3 +1,5 @@
+const url = process.env.VUE_APP_API_FIREBASE;
+
 export default {
   async registerCoach(context, data) {
     const userId = context.rootGetters.userId;
@@ -9,9 +11,9 @@ export default {
       areas: data.areas,
     };
     const token = context.rootGetters.token;
-    // `https://vue-http-demo-85e9e.firebaseio.com/coaches/${userId}.json`,
+
     const response = await fetch(
-      `https://vue-htt-demo-c141a-default-rtdb.europe-west1.firebasedatabase.app/coaches/${userId}.json?auth=${token}`,
+      `${url}/coaches/${userId}.json?auth=${token}`,
       {
         method: 'PUT',
         body: JSON.stringify(coachData),
@@ -33,11 +35,9 @@ export default {
     if (!payload.forceRefresh && !context.getters.shouldUpdate) {
       return;
     }
+    console.log({ url, env: process.env });
 
-    // `https://vue-http-demo-85e9e.firebaseio.com/coaches.json`
-    const response = await fetch(
-      `https://vue-htt-demo-c141a-default-rtdb.europe-west1.firebasedatabase.app/coaches.json`
-    );
+    const response = await fetch(`${url}/coaches.json`);
     const responseData = await response.json();
 
     if (!response.ok) {
