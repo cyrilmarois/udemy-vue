@@ -1,3 +1,7 @@
+### 0.9.0
+
+- API Composition
+
 ### Version 0.8.0
 
 - Form playground
