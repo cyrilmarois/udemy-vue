@@ -62,7 +62,7 @@ export default {
 
             this.$emit( 'register-coach', formData );
 
-            this.$router.push( '/coaches' );
+            this.$router.replace( '/coaches' );
         }
     },
 }
