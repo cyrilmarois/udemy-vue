@@ -61,6 +61,8 @@ export default {
             };
 
             this.$emit( 'register-coach', formData );
+
+            this.$router.push( '/coaches' );
         }
     },
 }
