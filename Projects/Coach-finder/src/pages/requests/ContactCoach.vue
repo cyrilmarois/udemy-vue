@@ -1,5 +1,13 @@
 <template>
-    <div></div>
+    <div>YOU CONTACT COACH {{ coachId }}</div>
 </template>
 
-<script></script>
+<script>
+export default {
+    computed: {
+        coachId() {
+            return this.$route.params.id
+        }
+    }
+}
+</script>
