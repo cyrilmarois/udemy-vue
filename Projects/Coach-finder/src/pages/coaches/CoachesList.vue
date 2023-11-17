@@ -6,7 +6,7 @@
         <base-card>
             <div class="controls">
                 <base-button mode="outline">refresh</base-button>
-                <base-button link to="/register">REGISTRATION</base-button>
+                <base-button v-if="!isCoach" link to="/register">REGISTRATION</base-button>
             </div>
             <ul v-if="hasCoaches">
                 <li v-for="filteredCoach in filteredCoaches" :key="filteredCoach.id">
@@ -44,7 +44,11 @@ export default {
         },
         hasCoaches() {
             return this.$store.getters[ 'coaches/hasCoaches' ]
-        }
+        },
+        isCoach() {
+            return this.$store.getters[ 'coaches/isCoach' ]
+        },
+
     },
     data() {
         return {

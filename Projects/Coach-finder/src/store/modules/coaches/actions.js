@@ -1,6 +1,6 @@
 export default {
   registerCoach(context, payload) {
-    payload = { ...payload, id: 'c3' };
+    payload = { ...payload, id: context.rootGetters.userId };
 
     context.commit('registerCoach', payload);
   },
