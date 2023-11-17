@@ -4,13 +4,13 @@
         <h4>{{ rate }}</h4>
         <div>
             <span v-for="area in areas" :key="area">
-                {{ area }}
+                <base-badge :title="area" :type="area" />
             </span>
         </div>
 
         <div class="actions">
-            <router-link :to="`/coaches/${id}/contact`">Contact</router-link>
-            <router-link :to="`/coaches/${id}`">Details</router-link>
+            <base-button link mode="outline" :to="`/coaches/${id}/contact`">Contact</base-button>
+            <base-button link :to="`/coaches/${id}`">Details</base-button>
         </div>
     </li>
 </template>
