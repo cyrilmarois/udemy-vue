@@ -4,8 +4,8 @@ import RequestsModule from './modules/requests/index.js';
 
 const store = createStore({
   modules: {
-    CoachesModule,
-    RequestsModule,
+    coaches: CoachesModule,
+    requests: RequestsModule,
   },
 });
 
