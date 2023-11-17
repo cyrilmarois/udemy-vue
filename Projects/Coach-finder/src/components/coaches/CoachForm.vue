@@ -40,7 +40,7 @@
 
 <script>
 export default {
-
+    emits: [ 'register-coach' ],
     data() {
         return {
             firstName: '',
@@ -59,7 +59,8 @@ export default {
                 rate: this.rate,
                 areas: this.areas,
             };
-            console.table( formData );
+
+            this.$emit( 'register-coach', formData );
         }
     },
 }
