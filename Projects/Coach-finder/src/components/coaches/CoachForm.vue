@@ -56,7 +56,7 @@ export default {
                 firstName: this.firstName,
                 lastName: this.lastName,
                 description: this.description,
-                rate: this.rate,
+                hourlyRate: this.rate,
                 areas: this.areas,
             };
 
