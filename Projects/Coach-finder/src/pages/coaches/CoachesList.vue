@@ -7,7 +7,7 @@
         </div>
         <ul v-if="hasCoaches">
             <li v-for="filteredCoach in filteredCoaches" :key="filteredCoach.id">
-                {{ filteredCoach.firstName }}
+                <CoachItem :="filteredCoach" />
             </li>
         </ul>
         <h3 v-else>
@@ -17,7 +17,10 @@
 </template>
 
 <script>
+import CoachItem from '../../components/coaches/CoachItem.vue';
+
 export default {
+    components: {CoachItem},
     computed: {
         filteredCoaches() {
             return this.$store.getters[ 'coaches/coaches' ];
@@ -28,3 +31,16 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+}
+</style>
