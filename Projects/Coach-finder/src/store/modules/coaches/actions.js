@@ -19,14 +19,15 @@ export default {
   },
 
   async loadCoaches(context) {
-    let coaches = [];
     try {
+      let coaches = [];
+      console.log('LOAD_COACHES');
       const response = await fetch(`${API_BASE_URL}/coaches.json`);
-      console.table({ response });
+      console.log({ response });
 
       if (response.ok) {
         const responseData = await response.json();
-        console.table({ responseData });
+        console.log({ responseData });
 
         for (const key in responseData) {
           const coach = {
@@ -40,10 +41,11 @@ export default {
           coaches.push(coach);
         }
       }
-      console.table({ coaches });
+      console.log('LOAD_COACHES ACTION COMMIT');
+      console.log({ coaches });
+      context.commit('setCoaches', coaches);
     } catch (e) {
       throw new Error(e.message);
     }
-    context.commit('setCoaches', coaches);
   },
 };
