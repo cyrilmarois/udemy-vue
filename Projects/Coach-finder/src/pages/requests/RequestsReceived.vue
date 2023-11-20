@@ -22,7 +22,6 @@ export default {
     components: {RequestItem},
     computed: {
         receivedRequests() {
-            console.table( this.$store.getters[ 'requests/requests' ] )
             return this.$store.getters[ 'requests/requests' ];
         },
         hasRequests() {
