@@ -1,28 +1,15 @@
-const API_BASE_URL = process.env.VUE_APP_API_BASE_URL;
-
 export default {
-  async coaches() {
+  coaches(state) {
     console.log('GETTERS COACHES');
-    try {
-      const response = await fetch(`${API_BASE_URL}/coaches.json`);
-      console.log({ response });
-      if (response.ok) {
-        const responseData = await response.json();
-        console.log({ responseData });
-
-        return responseData;
-      }
-    } catch (e) {
-      throw new Error(e.message);
-    }
+    return state.coaches;
   },
 
-  async hasCoaches(_, getters) {
+  hasCoaches(_, getters) {
     return getters.coaches && getters.coaches.length > 0;
   },
 
   async isCoach(_, getters, _2, rootGetters) {
-    const coaches = await getters.coaches;
+    const coaches = getters.coaches;
     console.log('GETTERS IS_COACH');
     console.log({ coaches });
     const userId = rootGetters.userId;
