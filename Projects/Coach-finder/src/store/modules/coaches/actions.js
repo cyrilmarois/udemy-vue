@@ -19,33 +19,32 @@ export default {
   },
 
   async loadCoaches(context) {
-    try {
-      let coaches = [];
-      console.log('LOAD_COACHES');
-      const response = await fetch(`${API_BASE_URL}/coaches.json`);
-      console.log({ response });
+    let coaches = [];
+    console.log('LOAD_COACHES');
+    const response = await fetch(`${API_BASE_URL}/coaches.json`);
+    console.log({ response });
 
-      if (response.ok) {
-        const responseData = await response.json();
-        console.log({ responseData });
+    const responseData = await response.json();
+    console.log({ responseData });
 
-        for (const key in responseData) {
-          const coach = {
-            id: key,
-            firstName: responseData[key].firstName,
-            lastName: responseData[key].lastName,
-            description: responseData[key].description,
-            hourlyRate: responseData[key].hourlyRate,
-            areas: responseData[key].areas,
-          };
-          coaches.push(coach);
-        }
-      }
-      console.log('LOAD_COACHES ACTION COMMIT');
-      console.log({ coaches });
-      context.commit('setCoaches', coaches);
-    } catch (e) {
-      throw new Error(e.message);
+    if (!response.ok) {
+      const error = new Error(responseData.message || 'Server Error');
+      throw error;
     }
+
+    for (const key in responseData) {
+      const coach = {
+        id: key,
+        firstName: responseData[key].firstName,
+        lastName: responseData[key].lastName,
+        description: responseData[key].description,
+        hourlyRate: responseData[key].hourlyRate,
+        areas: responseData[key].areas,
+      };
+      coaches.push(coach);
+    }
+    console.log('LOAD_COACHES ACTION COMMIT');
+    console.log({ coaches });
+    context.commit('setCoaches', coaches);
   },
 };
