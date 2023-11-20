@@ -7,7 +7,7 @@
         </div>
         <div class="form-control" :class="{ invalid: message.isInvalid }">
             <label for="message">Message</label>
-            <textarea name="message" id="message" rows="5" v.model.trim="message.value"
+            <textarea name="message" id="message" rows="5" v-model.trim="message.value"
                 @blur="clearFieldValidity( 'message' )"></textarea>
             <p v-if="message.isInvalid">Message is required</p>
         </div>
@@ -38,7 +38,12 @@ export default {
             if ( !this.isFormValid ) {
                 return;
             }
-            console.log( this.email, this.message )
+            this.$store.dispatch( 'requests/contactCoach', {
+                coachId: this.$route.params.id,
+                email: this.email.value,
+                message: this.message.value,
+            } );
+            this.$router.replace( '/coaches' );
         },
         validateForm() {
             this.isFormValid = true;
@@ -52,7 +57,6 @@ export default {
             }
         },
         clearFieldValidity( fieldName ) {
-            console.log( fieldName, this[ fieldName ] )
             this[ fieldName ].isInvalid = false;
         }
     }
