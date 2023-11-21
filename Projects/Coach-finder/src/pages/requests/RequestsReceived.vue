@@ -1,23 +1,25 @@
 <template>
-    <base-dialog v-if="!!error" @close="handleError">
-        <p>{{ error }}</p>
-    </base-dialog>
-    <section>
-        <base-card>
-            <header>
-                <h2>Requests Received</h2>
-            </header>
-            <div v-if="isLoading">
-                <base-spinner />
-            </div>
-            <ul v-else-if="!isLoading && hasRequests">
-                <li v-for="request in requests" :key="request.id">
-                    <RequestItem :email="request.email" :message="request.message" />
-                </li>
-            </ul>
-            <h3 v-else>No request yet</h3>
-        </base-card>
-    </section>
+    <div>
+        <base-dialog v-if="!!error" @close="handleError">
+            <p>{{ error }}</p>
+        </base-dialog>
+        <section>
+            <base-card>
+                <header>
+                    <h2>Requests Received</h2>
+                </header>
+                <div v-if="isLoading">
+                    <base-spinner />
+                </div>
+                <ul v-else-if="!isLoading && hasRequests">
+                    <li v-for="request in requests" :key="request.id">
+                        <RequestItem :email="request.email" :message="request.message" />
+                    </li>
+                </ul>
+                <h3 v-else>No request yet</h3>
+            </base-card>
+        </section>
+    </div>
 </template>
 
 <script>

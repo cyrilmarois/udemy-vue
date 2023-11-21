@@ -1,29 +1,31 @@
 <template>
-    <base-dialog :show="!!error" title="An error occurred!" @close="handleError">
-        <p>{{ error }}</p>
-    </base-dialog>
-    <section>
-        <CoachFilter @change-filter="setFilters" />
-    </section>
-    <section>
-        <base-card>
-            <div class="controls">
-                <base-button mode="outline" @click="loadCoaches( true )">refresh</base-button>
-                <base-button v-if="!isLoading && !isCoach" link to="/register">REGISTRATION</base-button>
-            </div>
-            <div v-if="isLoading">
-                <base-spinner />
-            </div>
-            <ul v-else-if="!isLoading && hasCoaches">
-                <li v-for="filteredCoach in filteredCoaches" :key="filteredCoach.id">
-                    <CoachItem :="filteredCoach" />
-                </li>
-            </ul>
-            <h3 v-else>
-                No coaches found
-            </h3>
-        </base-card>
-    </section>
+    <div>
+        <base-dialog :show="!!error" title="An error occurred!" @close="handleError">
+            <p>{{ error }}</p>
+        </base-dialog>
+        <section>
+            <CoachFilter @change-filter="setFilters" />
+        </section>
+        <section>
+            <base-card>
+                <div class="controls">
+                    <base-button mode="outline" @click="loadCoaches( true )">refresh</base-button>
+                    <base-button v-if="!isLoading && !isCoach" link to="/register">REGISTRATION</base-button>
+                </div>
+                <div v-if="isLoading">
+                    <base-spinner />
+                </div>
+                <ul v-else-if="!isLoading && hasCoaches">
+                    <li v-for="filteredCoach in filteredCoaches" :key="filteredCoach.id">
+                        <CoachItem :="filteredCoach" />
+                    </li>
+                </ul>
+                <h3 v-else>
+                    No coaches found
+                </h3>
+            </base-card>
+        </section>
+    </div>
 </template>
 
 <script>
