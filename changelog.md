@@ -1,3 +1,7 @@
+### 1.0.0
+
+- Coach finder project
+
 ### 0.9.0
 
 - API Composition
