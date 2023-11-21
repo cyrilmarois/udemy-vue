@@ -4,23 +4,24 @@ export default {
   async registerCoach(context, payload) {
     const coachId = context.rootGetters.userId;
 
-    try {
-      const response = await fetch(`${API_BASE_URL}/coaches/${coachId}.json`, {
-        method: 'PUT',
-        body: JSON.stringify(payload),
-      });
-      if (!response.ok) {
-        const error = new Error(response.message || 'Error during contact');
-        throw error;
-      }
-    } catch (e) {
-      throw e;
+    const response = await fetch(`${API_BASE_URL}/coaches/${coachId}.json`, {
+      method: 'PUT',
+      body: JSON.stringify(payload),
+    });
+    if (!response.ok) {
+      const error = new Error(response.message || 'Error during contact');
+      throw error;
     }
 
     context.commit('registerCoach', { ...payload, id: coachId });
   },
 
-  async loadCoaches(context) {
+  async loadCoaches(context, payload) {
+    // too early
+    if (!payload.forceRefresh && !context.getters.shouldUpdate) {
+      return;
+    }
+
     const response = await fetch(`${API_BASE_URL}/coaches.json`);
 
     const responseData = await response.json();
@@ -44,5 +45,6 @@ export default {
     }
 
     context.commit('setCoaches', coaches);
+    context.commit('setFetchTimestamp');
   },
 };

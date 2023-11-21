@@ -5,7 +5,9 @@ export default {
 
   setCoaches(state, payload) {
     state.coaches = payload;
-    console.log('SET COACHES');
-    console.log(state.coaches);
+  },
+
+  setFetchTimestamp(state) {
+    state.lastFetch = new Date().getTime();
   },
 };

@@ -13,4 +13,9 @@ export default {
 
     return coaches.some((coach) => coach.id === userId);
   },
+
+  shouldUpdate(state) {
+    const lastFetch = state.lastFetch;
+    return !lastFetch ? true : (new Date().getTime() - lastFetch) / 1000 > 60; // if last fetch was > 1 min
+  },
 };
